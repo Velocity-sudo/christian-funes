@@ -4,1114 +4,669 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHL Communications Pipeline - Christian Funes</title>
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    <title>Comunicaciones Pipeline — Christian Funes "Financing First"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            /* Brand Colors: Christian Funes */
-            --cf-navy: #0F1B3D;
-            --cf-navy-light: #1A2C5B;
-            --cf-gold: #F59E0B;
-            --cf-blue: #2563EB;
-            --cf-blue-light: #EFF6FF;
-            --cf-bg: #F8FAFC;
-            --cf-text: #1E293B;
-            --cf-text-light: #64748B;
-            --cf-white: #FFFFFF;
+            --navy: #0F1B3D;
+            --gold: #F59E0B;
+            --gold-d: #D97706;
+            --slack: #4A154B;
+            --slack-l: #F3E8F3;
+            --gmail: #EA4335;
+            --gmail-l: #FDECEA;
+            --sms: #8B5CF6;
+            --sms-l: #EDE9FE;
+            --wa: #25D366;
+            --wa-l: #E7F9EE;
+            --txt: #1E293B;
+            --txt-l: #64748B;
+            --bg: #F1F5F9;
+            --w: #FFF;
+            --brd: #E2E8F0;
+            --code: #F8FAFC;
+            --warn-bg: #FEF3C7;
+            --warn: #92400E;
+            --crit-bg: #FEE2E2;
+            --crit: #991B1B;
+            --ok-bg: #D1FAE5;
+            --ok: #065F46;
+            --info-bg: #DBEAFE;
+            --info: #1E40AF;
+            --auto-bg: #EDE9FE;
+            --auto: #5B21B6
+        }
 
-            /* Status Colors */
-            --status-urgent: #EF4444;
-            /* Rojo GHL / Slack Urgent */
-            --status-urgent-bg: #FEF2F2;
-            --status-high: #F59E0B;
-            /* Amarillo / Naranja */
-            --status-high-bg: #FFFBEB;
-            --status-med: #2563EB;
-            /* Azul */
-            --status-med-bg: #EFF6FF;
-            --status-success: #10B981;
-            /* Verde */
-            --status-success-bg: #ECFDF5;
-
-            /* Platform Colors */
-            --slack-color: #4A154B;
-            --whatsapp-color: #25D366;
-            --sms-color: #8B5CF6;
-            --email-color: #3B82F6;
-
-            font-family: 'Inter', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
         }
 
         body {
-            background-color: var(--cf-bg);
-            color: var(--cf-text);
-            margin: 0;
-            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--txt);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Montserrat', sans-serif;
-            margin-top: 0;
+        .page {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 32px 20px 80px
         }
 
         .header {
-            background: linear-gradient(135deg, var(--cf-navy) 0%, var(--cf-navy-light) 100%);
-            color: var(--cf-white);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 4px solid var(--cf-gold);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(245, 158, 11, .15)0%, transparent 70%)
+        }
+
+        .pill {
+            display: inline-block;
+            background: rgba(245, 158, 11, .12);
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(245, 158, 11, .2);
+            margin-bottom: 10px
         }
 
         .header h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
-            font-weight: 700;
+            color: var(--w);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px
         }
 
         .header p {
-            margin: 0;
-            color: #CBD5E1;
-            font-size: 1.1rem;
+            color: #94A3B8;
+            font-size: 13px
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-        }
-
-        /* Sidebar / Primary Navigation */
-        .sidebar {
-            background: var(--cf-white);
-            border-radius: 12px;
-            padding: 1.5rem 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            background: var(--w);
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--brd);
+            margin-bottom: 6px;
             position: sticky;
-            top: 2rem;
-            height: fit-content;
-            max-height: calc(100vh - 4rem);
-            overflow-y: auto;
+            top: 0;
+            z-index: 100
         }
 
-        .sidebar h3 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--cf-text-light);
-            margin-bottom: 1rem;
-            padding-left: 0.5rem;
-        }
-
-        .nav-btn {
-            width: 100%;
-            text-align: left;
-            padding: 0.75rem 1rem;
-            background: none;
-            border: none;
+        .tab {
+            padding: 8px 14px;
             border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--cf-text);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-btn:hover {
-            background: var(--cf-bg);
-            color: var(--cf-blue);
-        }
-
-        .nav-btn.active {
-            background: var(--cf-blue-light);
-            color: var(--cf-blue);
-            font-weight: 600;
-            box-shadow: inset 3px 0 0 var(--cf-blue);
-        }
-
-        /* Main Content Area */
-        .content-area {
-            background: var(--cf-white);
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            min-height: 500px;
-            overflow: hidden;
-        }
-
-        .stage-section {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .stage-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stage-header {
-            padding: 2rem;
-            border-bottom: 1px solid #E2E8F0;
-            position: relative;
-        }
-
-        .stage-header h2 {
-            font-size: 1.5rem;
-            color: var(--cf-navy);
-            margin: 0 0 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .stage-triggers {
-            font-size: 0.9rem;
-            color: var(--cf-text-light);
-            background: var(--cf-bg);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            border-left: 3px solid var(--cf-gold);
-        }
-
-        /* Secondary Tabs (Internal / External) */
-        .tabs-header {
-            display: flex;
-            border-bottom: 1px solid #E2E8F0;
-            background: var(--cf-bg);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 1rem;
-            background: none;
-            border: none;
-            border-bottom: 2px solid transparent;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--cf-text-light);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .tab-btn:hover {
-            color: var(--cf-navy);
-            background: #F1F5F9;
-        }
-
-        .tab-btn.active {
-            color: var(--cf-blue);
-            border-bottom-color: var(--cf-blue);
-            background: var(--cf-white);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 2rem;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Message Cards */
-        .message-card {
-            background: var(--cf-bg);
-            border: 1px solid #E2E8F0;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-
-        .message-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #E2E8F0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #F8FAFC;
-        }
-
-        .platform-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 0.85rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 9999px;
-            color: white;
-        }
-
-        .platform-slack {
-            background-color: var(--slack-color);
-        }
-
-        .platform-whatsapp {
-            background-color: var(--whatsapp-color);
-        }
-
-        .platform-sms {
-            background-color: var(--sms-color);
-        }
-
-        .platform-email {
-            background-color: var(--email-color);
-        }
-
-        .platform-ghl {
-            background-color: #00ADEF;
-        }
-
-        /* GHL specific tasks */
-
-        .urgency-badge {
-            font-size: 0.75rem;
+            font-size: 11px;
             font-weight: 700;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .urgency-urt {
-            background: var(--status-urgent-bg);
-            color: var(--status-urgent);
-            border: 1px solid currentColor;
-        }
-
-        .urgency-high {
-            background: var(--status-high-bg);
-            color: var(--status-high);
-            border: 1px solid currentColor;
-        }
-
-        .urgency-med {
-            background: var(--status-med-bg);
-            color: var(--status-med);
-            border: 1px solid currentColor;
-        }
-
-        .urgency-info {
-            background: var(--status-success-bg);
-            color: var(--status-success);
-            border: 1px solid currentColor;
-        }
-
-        .message-body {
-            padding: 1.5rem;
-            font-family: monospace;
-            white-space: pre-wrap;
-            font-size: 0.95rem;
-            color: #334155;
-            background: var(--cf-white);
-            position: relative;
-        }
-
-        .message-body .ghl-var {
-            color: var(--cf-blue);
-            font-weight: 600;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--cf-bg);
-            border: 1px solid #E2E8F0;
-            color: var(--cf-text);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.8rem;
+            border: none;
+            background: transparent;
+            color: var(--txt-l);
+            transition: .2s;
+            white-space: nowrap
+        }
+
+        .tab:hover {
+            background: var(--bg);
+            color: var(--txt)
+        }
+
+        .tab.active {
+            background: var(--navy);
+            color: var(--w)
+        }
+
+        .tab .tn {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 18px;
+            font-size: 10px;
+            margin-right: 4px;
+            background: rgba(0, 0, 0, .06);
+            color: var(--txt-l)
+        }
+
+        .tab.active .tn {
+            background: rgba(245, 158, 11, .2);
+            color: var(--gold)
+        }
+
+        .sub-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+            padding: 4px;
+            background: var(--code);
+            border-radius: 10px;
+            border: 1px solid var(--brd)
+        }
+
+        .sub-tab {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--txt-l);
+            text-align: center;
+            transition: .2s
+        }
+
+        .sub-tab.active-int {
+            background: var(--slack-l);
+            color: var(--slack)
+        }
+
+        .sub-tab.active-ext {
+            background: #DBEAFE;
+            color: #1E40AF
+        }
+
+        .stage-panel {
+            display: none
+        }
+
+        .stage-panel.active {
+            display: block
+        }
+
+        .stage-title {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            transition: all 0.2s;
+            gap: 10px;
+            margin-bottom: 4px
         }
 
-        .copy-btn:hover {
-            background: #E2E8F0;
+        .stage-title h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy)
         }
 
-        /* Auto Actions / Logic Info */
-        .logic-card {
-            background: #F8FAFC;
-            border-left: 4px solid var(--cf-navy);
-            padding: 1rem 1.5rem;
-            margin-top: 1.5rem;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
+        .stage-desc {
+            font-size: 13px;
+            color: var(--txt-l);
+            margin-bottom: 18px
         }
 
-        .logic-card h4 {
-            color: var(--cf-navy);
-            margin: 0 0 0.5rem 0;
+        .comm-panel {
+            display: none
+        }
+
+        .comm-panel.active {
+            display: block
+        }
+
+        .card {
+            background: var(--w);
+            border: 1px solid var(--brd);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden
+        }
+
+        .card-h {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--brd);
+            flex-wrap: wrap;
+            gap: 6px
         }
 
-        .logic-card ul {
-            margin: 0;
-            padding-left: 1.2rem;
-            color: var(--cf-text-light);
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 8px
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .container {
-                grid-template-columns: 1fr;
+        .ch {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            padding: 3px 8px;
+            border-radius: 4px
+        }
+
+        .ch-slack {
+            background: var(--slack-l);
+            color: var(--slack)
+        }
+
+        .ch-email {
+            background: var(--gmail-l);
+            color: var(--gmail)
+        }
+
+        .ch-sms {
+            background: var(--sms-l);
+            color: var(--sms)
+        }
+
+        .ch-wa {
+            background: var(--wa-l);
+            color: var(--wa)
+        }
+
+        .time {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--txt-l);
+            background: var(--code);
+            padding: 3px 8px;
+            border-radius: 5px
+        }
+
+        .urg {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 4px
+        }
+
+        .u-ok {
+            background: var(--ok-bg);
+            color: var(--ok)
+        }
+
+        .u-info {
+            background: var(--info-bg);
+            color: var(--info)
+        }
+
+        .u-warn {
+            background: var(--warn-bg);
+            color: var(--warn)
+        }
+
+        .u-crit {
+            background: var(--crit-bg);
+            color: var(--crit)
+        }
+
+        .card-b {
+            padding: 14px 16px
+        }
+
+        .lbl {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--txt-l);
+            margin-bottom: 4px
+        }
+
+        .subj {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gmail);
+            margin-bottom: 6px
+        }
+
+        .msg {
+            background: var(--code);
+            border: 1px solid var(--brd);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12.5px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word
+        }
+
+        .msg .m {
+            color: var(--gold-d);
+            font-weight: 700;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 11.5px
+        }
+
+        .msg .b {
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .msg .lk {
+            color: #3B82F6;
+            text-decoration: underline
+        }
+
+        .auto {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px 14px;
+            margin: 0 0 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--auto-bg);
+            color: var(--auto);
+            border: 1px solid #C4B5FD
+        }
+
+        .merge-ref {
+            background: var(--w);
+            border: 1px solid var(--brd);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px
+        }
+
+        .merge-ref h3 {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 8px
+        }
+
+        .fg {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .fi {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: var(--code);
+            border: 1px solid var(--brd);
+            font-family: 'SF Mono', 'Fira Code', monospace
+        }
+
+        .fi strong {
+            color: var(--navy)
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--txt-l)
+        }
+
+        @media(max-width:768px) {
+            .page {
+                padding: 12px 8px 60px
             }
 
-            .sidebar {
-                position: static;
-                max-height: none;
+            .header {
+                padding: 24px 16px
+            }
+
+            .header h1 {
+                font-size: 20px
+            }
+
+            .tabs {
+                gap: 2px;
+                padding: 6px
+            }
+
+            .tab {
+                padding: 6px 8px;
+                font-size: 10px
             }
         }
     </style>
 </head>
 
 <body>
-
-    <header class="header">
-        <h1>Centro de Comunicaciones GHL</h1>
-        <p>Pipeline Copy & Automations | Christian Funes "Financing First"</p>
-    </header>
-
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <h3>Fases del Pipeline</h3>
-            <button class="nav-btn active" data-target="stage-1" onclick="switchStage('stage-1')">
-                <i data-lucide="user-plus" width="18" height="18"></i> 1. Registro (Lead)
-            </button>
-            <button class="nav-btn" data-target="stage-2" onclick="switchStage('stage-2')">
-                <i data-lucide="phone-call" width="18" height="18"></i> 2. Llamada 1
-            </button>
-            <button class="nav-btn" data-target="stage-3" onclick="switchStage('stage-3')">
-                <i data-lucide="phone-call" width="18" height="18"></i> 3. Llamada 2
-            </button>
-            <button class="nav-btn" data-target="stage-4" onclick="switchStage('stage-4')">
-                <i data-lucide="phone-off" width="18" height="18"></i> 4. Llamada 3 (Último)
-            </button>
-            <button class="nav-btn" data-target="stage-5" onclick="switchStage('stage-5')">
-                <i data-lucide="calendar" width="18" height="18"></i> 5. Agendada
-            </button>
-            <button class="nav-btn" data-target="stage-6" onclick="switchStage('stage-6')">
-                <i data-lucide="file-form" width="18" height="18"></i> 6. Formulario + ID
-            </button>
-            <button class="nav-btn" data-target="stage-7" onclick="switchStage('stage-7')">
-                <i data-lucide="upload-cloud" width="18" height="18"></i> 7. Documentos
-            </button>
-            <button class="nav-btn" data-target="stage-8" onclick="switchStage('stage-8')">
-                <i data-lucide="bank" width="18" height="18"></i> 8. Base Underwriting
-            </button>
-            <button class="nav-btn" data-target="stage-9" onclick="switchStage('stage-9')">
-                <i data-lucide="home" width="18" height="18"></i> 9. Búsqueda + Oferta
-            </button>
-            <button class="nav-btn" data-target="stage-10" onclick="switchStage('stage-10')">
-                <i data-lucide="check-circle" width="18" height="18"></i> 10. Con Contrato
-            </button>
-            <button class="nav-btn" data-target="stage-11" onclick="switchStage('stage-11')">
-                <i data-lucide="x-circle" width="18" height="18"></i> 11. No Califica
-            </button>
-            <button class="nav-btn" data-target="stage-12" onclick="switchStage('stage-12')">
-                <i data-lucide="trending-up" width="18" height="18"></i> 12. Coaching
-            </button>
-            <button class="nav-btn" data-target="stage-13" onclick="switchStage('stage-13')">
-                <i data-lucide="ghost" width="18" height="18"></i> 13. Inacción
-            </button>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="content-area">
-
-            <!-- STAGE 1: REGISTRO -->
-            <section id="stage-1" class="stage-section active">
-                <div class="stage-header">
-                    <h2><i data-lucide="user-plus"></i> 1. Registro (Lead Entrante)</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Form Submission (Optin VSL, Referral Form, FB Lead Gen).<br>
-                        <strong>Tags:</strong> <code>[Status] Nuevo Lead</code>, <code>[Accion] Llamar Inmediato</code>
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-1', 'internal')"><i
-                            data-lucide="users"></i> INTERNO (Equipo)</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-1', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO (Cliente)</button>
-                </div>
-
-                <!-- Internal Comms S1 -->
-                <div class="tab-content internal active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-urt">URGENTE (0m)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>🚨 *NUEVO LEAD - LLAMAR AHORA* 🚨
-                            ¡Laura! Entró un nuevo Lead. Tenemos 5 minutos de oro para conectar.
-
-                            *Nombre:* <span class="ghl-var">{{contact.name}}</span>
-                            *Teléfono:* <span class="ghl-var">{{contact.phone}}</span>
-                            *Email:* <span class="ghl-var">{{contact.email}}</span>
-                            *Fuente:* <span class="ghl-var">{{contact.source}}</span>
-
-                            👉 *Instrucción:* Toca el enlace para llamar ahora y hacer el filtro de viabilidad de 15
-                            min. Actualiza el pipeline tras la llamada.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-high">HIGH (+1H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>⏳ *Recordatorio: Lead sin contactar (+1H)*
-                            Laura, este prospecto llenó sus datos hace 1 hora y aún no lo has llamado.
-                            Llámalo tan pronto puedas.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-high">HIGH (+12H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>⚠️ *Recordatorio: Debe ser contactado hoy (+12H)*
-                            Laura, este prospecto entró hace medio día. No te olvides de llamarlo hoy mismo.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+24H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>📉 *Llamar URGENTE: Enfriándose (+24H)*
-                            Laura, ya pasó un día entero y no hemos llamado a este lead. La probabilidad de cierre está
-                            bajando. Atiéndelo de inmediato.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+48H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>❄️ *Lead perdiendo interés (+48H)*
-                            Laura, ya pasaron 2 días. La probabilidad de cierre bajó mucho más. Llama para agendar la
-                            llamada 1.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+72H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>🧊 *Última oportunidad (+72H)*
-                            Laura, pasaron 3 días. Mañana el prospecto será movido a Inacción. Intenta un contacto por
-                            llamada ahora mismo para salvarlo.
-                            <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-
-                    <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> +96H</h4>
-                        <ul>
-                            <li>Si no hay respuesta, el sistema pasa al usuario automáticamente a pipeline stage
-                                <strong>Inacción</strong>.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- External Comms S1 -->
-                <div class="tab-content external">
-                    <div class="logic-card">
-                        <h4><i data-lucide="slash"></i> Silencio Externo</h4>
-                        <p>No se enviarán comunicaciones externas en esta etapa. El objetivo y la sorpresa de la llamada
-                            de Laura es el factor clave de conversión aquí.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 2: Llamada 1 -->
-            <section id="stage-2" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="phone-call"></i> 2. Llamada 1 (Sin Respuesta)</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 1".<br>
-                        <strong>Tags:</strong> <code>[Accion] Intentar L2</code>
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-2', 'internal')"><i
-                            data-lucide="users"></i> INTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-2', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO</button>
-                </div>
-
-                <div class="tab-content internal active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-ghl"><i data-lucide="check-square" width="14"></i>
-                                Tarea GHL</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Task Assigned to: Laura
-                            *Título:* Volver a intentar (Llamada 2)
-                            *Due Date:* 4 horas a partir de ahora.
-                            *Descripción:* El lead <span class="ghl-var">{{contact.name}}</span> no contestó el primer
-                            intento. Llamar nuevamente para hacer el filtro de viabilidad.
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+24H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Llámalo 2nd vez.
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+48H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado 2nd vez.
-                        </div>
-                    </div>
-
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado 2nd vez, se va a ir a inacción.
-                        </div>
-                    </div>
-
-                    <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> +96H</h4>
-                        <ul>
-                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
-                                <strong>Inacción</strong> con tag `inacción - c1`.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tab-content external">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
-                                    width="14"></i> WhatsApp</span>
-                            <span class="urgency-badge urgency-info">INFO (+0m)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, soy Laura del
-                            equipo de Christian Funes. Te llamé recién porque vi que querías validar si podías comprar
-                            casa con nuestro método. ¿En qué horario te queda mejor que te marque hoy para hacerte 3
-                            preguntas rápidas?
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 3: Llamada 2 -->
-            <section id="stage-3" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="phone-call"></i> 3. Llamada 2 (Sin Respuesta)</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 2".<br>
-                        <strong>Tags:</strong> <code>[Accion] Intentar L3</code>
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-3', 'internal')"><i
-                            data-lucide="users"></i> INTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-3', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO</button>
-                </div>
-
-                <div class="tab-content internal active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+24H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Llámalo 3era vez.
-                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+48H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado 3era vez.
-                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado 3era vez, se va a ir a inacción.
-                        </div>
-                    </div>
-                    <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> +96H</h4>
-                        <ul>
-                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
-                                <strong>Inacción</strong> con tag `inacción - c2`.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tab-content external">
-                    <div class="logic-card">
-                        <h4><i data-lucide="slash"></i> Silencio Externo</h4>
-                        <p>No se enviarán comunicaciones externas en esta etapa. El Lead queda esperando el tercer (y
-                            último) intento manual de llamada antes del breakup final.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 4: Llamada 3 -->
-            <section id="stage-4" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="phone-off"></i> 4. Llamada 3 (Último Intento)</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 3".<br>
-                        <strong>Tags:</strong> <code>[Accion] Intentar L4</code> (O Último Breakup)
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-4', 'internal')"><i
-                            data-lucide="users"></i> INTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-4', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO</button>
-                </div>
-
-                <div class="tab-content internal active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+24H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Llámalo última vez.
-                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-med">MED (+48H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado última vez.
-                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
-                                GHL App</span>
-                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Aún no lo has llamado última vez. Se va a ir a inacción.
-                        </div>
-                    </div>
-                    <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> +96H</h4>
-                        <ul>
-                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
-                                <strong>Inacción</strong> con tag `inacción - c3`.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tab-content external">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
-                                    width="14"></i> WhatsApp / Email</span>
-                            <span class="urgency-badge urgency-high">HIGH (+24h)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, soy Laura. Veo
-                            que no hemos podido coincidir en estos días 📱. Cerramos tu archivo temporalmente para
-                            enfocarnos en las familias que están listas para iniciar el proceso de compra de casa.
-
-                            Si en algún momento decides que es tu turno, por favor guárdate nuestro número y contáctanos
-                            o aplica directo aquí cuando quieras retomar: <span
-                                class="ghl-var">{{custom_values.application_link}}</span>.
-
-                            ¡Mucho éxito!
-                            - Equipo de Christian Funes
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 5: Agendada -->
-            <section id="stage-5" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="calendar"></i> 5. Llamada Agendada (Aprobación)</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Appointment Booked en el calendario de Christian.
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-5', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO (Cliente)</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-5', 'internal')"><i data-lucide="users"></i>
-                        INTERNO (Equipo)</button>
-                </div>
-
-                <div class="tab-content external active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
-                                    width="14"></i> WhatsApp (Confirmación)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>✅ ¡Excelente <span class="ghl-var">{{contact.first_name}}</span>! Tu
-                            Diagnóstico "Rayos X" con Christian está 100% confirmado.
-
-                            📅 Fecha: <span class="ghl-var">{{appointment.start_time}}</span>
-
-                            Christian revisará tu situación para definir la mejor estrategia y evitar rechazos
-                            innecesarios por parte de los bancos.
-
-                            👉 **Importante:** Te llamaremos directo a este número a la hora acordada.
-                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-sms"><i data-lucide="message-square" width="14"></i>
-                                SMS (-1 h)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Recordatorio Christian Funes: Tu diagnóstico hipotecario es en 1 hora! 🏠
-                            Te llamaremos puntual a este número.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content internal">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i>
-                                Slack</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>📅 *NUEVA CITA AGENDADA*
-                            Christian, tienes un diagnóstico con:
-                            Nombre: <span class="ghl-var">{{contact.name}}</span>
-                            Día/Hora: <span class="ghl-var">{{appointment.start_time}}</span>
-                            Link CRM: <span
-                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 6: Formulario + ID -->
-            <section id="stage-6" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="file-form"></i> 6. Formulario 7 Preguntas + Envío ID</h2>
-                    <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to Formulario + ID / Call End con Tag [Enviar
-                        Form].
-                    </div>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-6', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-6', 'internal')"><i data-lucide="users"></i>
-                        INTERNO</button>
-                </div>
-
-                <div class="tab-content external active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
-                                    width="14"></i> WhatsApp</span>
-                            <span class="urgency-badge urgency-high">HIGH (+0m)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>¡Excelente charla! 🚀 Según lo conversado, el siguiente paso para blindar
-                            tu aprobación es completar el siguiente formato breve (toma 2 minutos) y anexar una foto de
-                            tu ID/Licencia.
-
-                            👉 Entra aquí para enviarlo: <span
-                                class="ghl-var">{{custom_values.formulario_7_link}}</span>
-
-                            Una vez lo envíes, avanzamos a la etapa de estructuración total. ¡Cualquier duda, estoy
-                            aquí!
-                            - Equipo Christian Funes
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content internal">
-                    <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> Reglas del Sistema (Híbrido)</h4>
-                        <ul>
-                            <li>El sistema evalúa si en 24H el contacto llenó el formulario (Custom Field: ID_Uploaded).
-                            </li>
-                            <li>Si NO lo hizo: Se genera Notificación a Laura -> <em>"Llamar al cliente para llenar el
-                                    formulario en vivo 📱"</em>.</li>
-                            <li>Al completar el formulario, pasa automáticamente a la Etapa 7.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 7: Documentos -->
-            <section id="stage-7" class="stage-section">
-                <div class="stage-header">
-                    <h2><i data-lucide="upload-cloud"></i> 7. Envío de Documentos</h2>
-                </div>
-
-                <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-7', 'external')"><i
-                            data-lucide="message-square"></i> EXTERNO</button>
-                </div>
-
-                <div class="tab-content external active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-email"><i data-lucide="mail" width="14"></i> Email /
-                                WhatsApp</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
-                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>,
-
-                            Estamos listos para pasar tu archivo a revisión (Underwriting) y obtener esa Carta de
-                            Aprobación Real. Para ello, necesitamos verificar los respaldos financieros.
-
-                            Por favor accede a tu portal seguro y carga:
-                            1. Taxes completos de los últimos 2 años
-                            2. Estados de cuenta (Bank Statements) recientes
-
-                            👉 Sube los documentos aquí: <span
-                                class="ghl-var">{{custom_values.portal_documentos_link}}</span>
-
-                            🚨 *Nota:* Mientras más rápido subas esto, más rápido podremos garantizarte tu presupuesto
-                            exacto.
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 8 -->
-            <section id="stage-8" class="stage-section">
-                <div class="stage-header">
-                    <h2>8. Aplicación Bancos (Underwriting)</h2>
-                </div>
-                <div class="logic-card">
-                    <h4>Internal Process</h4>
-                    <p>Silencio Externo. Trabajo interno revisando documentación. Alerta a Christian si falta algo.</p>
-                </div>
-            </section>
-
-            <!-- STAGE 9 -->
-            <section id="stage-9" class="stage-section">
-                <div class="stage-header">
-                    <h2>9. Búsqueda de Casa + Oferta</h2>
-                </div>
-                <div class="tab-content active external">
-                    <div class="message-card">
-                        <div class="message-header"><span class="platform-badge platform-whatsapp">WA</span></div>
-                        <div class="message-body">¡Felicidades <span class="ghl-var">{{contact.first_name}}</span>! 🎉
-                            Tu Carta de Aprobación Blindada está lista. A partir de hoy, tienes el poder de comprar como
-                            un comprador Cash (Cash Buyer). Ya he notificado a nuestro realtor de confianza para que
-                            comiencen los tours de casas. ¡Disfruta el proceso!</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STAGE 10 -->
-            <section id="stage-10" class="stage-section">
-                <div class="stage-header">
-                    <h2>10. Con Contrato (Cierre)</h2>
-                </div>
-                <div class="logic-card">
-                    <h4>Proceso GHL</h4>
-                    <p>Notificación de celebración. Email automático de pasos a seguir para el Appraisal e Inspecciones
-                        con el Realtor.</p>
-                </div>
-            </section>
-
-            <!-- STAGES 11, 12, 13 -->
-            <section id="stage-11" class="stage-section">
-                <div class="stage-header">
-                    <h2>11. No Califica (Dead Loss)</h2>
-                </div>
-                <div class="logic-card">
-                    <p>Tag de [DQ]. Archivo cerrado. Sin comunicaciones automáticas para evitar dañar reputación. Salida
-                        limpia manual por asesor.</p>
-                </div>
-            </section>
-
-            <section id="stage-12" class="stage-section">
-                <div class="stage-header">
-                    <h2>12. Coaching Aprobación</h2>
-                </div>
-                <div class="message-card">
-                    <div class="message-body"><strong>[Nurture Email cada Mes]:</strong> "Estrategias para mejorar
-                        crédito y proteger tu negocio." "Casos de éxito de latinos Self-Employed que lograron salir del
-                        rechazo".</div>
-                </div>
-            </section>
-
-            <section id="stage-13" class="stage-section">
-                <div class="stage-header">
-                    <h2>13. Inacción</h2>
-                </div>
-                <div class="logic-card">
-                    <p>Lead descartado automáticamente si se estanca en la aplicación por más de 15 días tras todos los
-                        recordatorios.</p>
-                </div>
-            </section>
-
-        </main>
+    <div class="page">
+        <header class="header">
+            <div class="pill">Pipeline Completo — GHL Workflows</div>
+            <h1>📋 Comunicaciones por Etapa</h1>
+            <p>Textos internos (equipo) y externos (cliente) listos para implementar en GoHighLevel. Click en cada etapa
+                para ver las notificaciones.</p>
+        </header>
+        <div class="merge-ref">
+            <h3>📋 GHL Merge Fields</h3>
+            <div class="fg">
+                <div class="fi"><strong>Nombre:</strong> {{contact.first_name}}</div>
+                <div class="fi"><strong>Apellido:</strong> {{contact.last_name}}</div>
+                <div class="fi"><strong>Tel:</strong> {{contact.phone}}</div>
+                <div class="fi"><strong>Email:</strong> {{contact.email}}</div>
+                <div class="fi"><strong>Link:</strong> {{contact.contact_link}}</div>
+                <div class="fi"><strong>Fuente:</strong> {{contact.source}}</div>
+                <div class="fi"><strong>Fecha:</strong> {{contact.date_created}}</div>
+            </div>
+        </div>
+        <div id="tabs" class="tabs"></div>
+        <div id="content"></div>
+        <p class="footer">Comunicaciones Pipeline — Antigravity × Lucho Branding × Christian Funes "Financing First" —
+            Marzo 2026</p>
     </div>
-
-    <!-- Script for Tab Logic -->
     <script>
-        lucide.createIcons();
+        const M = { n: '<span class="m">{{contact.first_name}} {{contact.last_name}}</span>', fn: '<span class="m">{{contact.first_name}}</span>', ph: '<span class="m">{{contact.phone}}</span>', em: '<span class="m">{{contact.email}}</span>', lk: '<span class="lk">{{contact.contact_link}}</span>', src: '<span class="m">{{contact.source}}</span>', dt: '<span class="m">{{contact.date_created}}</span>', form: '<span class="lk">{{custom_values.formulario_7_link}}</span>', docs: '<span class="lk">{{custom_values.portal_documentos_link}}</span>', cal: '<span class="m">{{appointment.calendar_link}}</span>', apdt: '<span class="m">{{appointment.date}}</span>', aptm: '<span class="m">{{appointment.time}}</span>' };
+        const B = t => `<span class="b">${t}</span>`;
+        const stages = [
+            {
+                id: 1, name: "Registro (Lead)", icon: "🔥", desc: "Lead entra por formulario (Ads u Orgánico). SOLO comunicación interna — la sorpresa de la llamada rápida de Laura es el factor clave.",
+                int: [
+                    { ch: "slack", time: "0H — Inmediato", urg: "u-crit", urgTxt: "⚡ URGENTE", msg: `🚨 ${B('*NUEVO LEAD — LLAMAR AHORA*')} 🚨\n¡Laura! Entró un nuevo Lead. Tenemos 5 minutos de oro para conectar.\n\n*Nombre:* ${M.n}\n*Teléfono:* ${M.ph}\n*Email:* ${M.em}\n*Fuente:* ${M.src}\n\n👉 *Instrucción:* Toca el enlace para llamar ahora y hacer el filtro de viabilidad de 15 min. Actualiza el pipeline tras la llamada.\n\n${M.lk}` },
+                    { ch: "slack", time: "1H", urg: "u-crit", urgTxt: "🔴 HIGH", msg: `⏳ *Recordatorio: Lead sin contactar (+1H)*\nLaura, este prospecto llenó sus datos hace 1 hora y aún no lo has llamado.\nLlámalo tan pronto puedas.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "12H", urg: "u-warn", urgTxt: "⚠️ MED", msg: `⚠️ *Lead sin contactar (+12H)*\nNo te olvides de contactar al lead ${M.n}, debe ser hoy mismo.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ MED", msg: `📉 *24H sin llamar — Probabilidad bajando*\nPasó un día y no lo llamaste. La probabilidad de cierre baja significativamente después de 24h.\n\n${M.n}\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "48H", urg: "u-crit", urgTxt: "🚨 HIGH", msg: `🔴 *48H sin llamar — Lead en riesgo*\nPasaron 2 días y no lo llamaste. La probabilidad de cierre bajó aún más.\n\n${M.n}\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "72H", urg: "u-crit", urgTxt: "🚨 CRÍTICO", msg: `🚨 *72H sin llamar — ÚLTIMO DÍA*\nPasaron 3 días y no lo llamaste. ${B('En un día se moverá a inacción automáticamente.')}\n\n${M.n}\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('+96H — Acción Automática:')} Mover oportunidad a ${B('"13. Inacción"')}. Tag: [Status] Inacción - Registro.` }
+                ], ext: []
+            },
 
-        function switchStage(targetId) {
-            document.querySelectorAll('.stage-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            {
+                id: 2, name: "Llamada 1", icon: "📞", desc: "Primer intento de llamada sin respuesta. Se envía mensaje externo de presentación. Reintentar al día siguiente.",
+                int: [
+                    { ch: "slack", time: "24H", urg: "u-info", urgTxt: "📞 2do Intento", msg: `📞 ${B('LLAMADA #2 — Toca reintentar')}\n\n${M.n} no contestó la primera llamada ayer.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlámalo 2da vez hoy.` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Sin 2da", msg: `⚠️ ${B('Aún no has llamado 2da vez')}\n\n${M.n} lleva 48h desde la primera llamada sin segundo intento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "72H", urg: "u-crit", urgTxt: "🚨 Último", msg: `🚨 ${B('Aún no la 2da llamada — Se va a inacción')}\n\n${M.n} — 72h sin segundo intento. ${B('En 24h se va a inacción.')}\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('+96H — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - C1` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-info", urgTxt: "📱 Presentación", msg: `Hola ${M.fn}, soy Laura del equipo de Christian Funes. Te llamé recién porque vi que querías validar si podías comprar casa con nuestro método.\n\n¿En qué horario te queda mejor que te marque hoy para hacerte 3 preguntas rápidas?` },
+                    { ch: "sms", time: "0H", urg: "u-info", urgTxt: "📲 SMS", msg: `Hola ${M.fn}, soy Laura del equipo de Christian Funes. Te llamé porque vi que quieres validar si puedes comprar casa. ¿En qué horario te queda mejor que te marque? — Equipo Christian Funes` },
+                    { ch: "email", time: "0H", urg: "u-info", urgTxt: "📧 Email", subj: `{{contact.first_name}}, te llamé recién — Christian Funes`, msg: `Hola ${M.fn},\n\nSoy Laura del equipo de Christian Funes. Te llamé hace un momento porque vi que completaste tu solicitud para validar si puedes comprar casa con nuestro método.\n\nNo pudimos comunicarnos, pero me encantaría hacerte ${B('3 preguntas rápidas')} para saber si podemos ayudarte.\n\n¿En qué horario te queda mejor que te marque?\n\nQuedo atenta,\nLaura — Equipo Christian Funes "Financing First"` }
+                ]
+            },
 
-            document.getElementById(targetId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
+            {
+                id: 3, name: "Llamada 2", icon: "📞", desc: "Segundo intento sin respuesta. Solo comunicación interna.",
+                int: [
+                    { ch: "slack", time: "24H", urg: "u-crit", urgTxt: "🔴 3er Intento", msg: `🔴 ${B('LLAMADA #3 — Tercer intento')}\n\n${M.n} no ha contestado las 2 llamadas anteriores.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\n${B('Si no contesta → breakup y cierre.')}` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Pendiente", msg: `⚠️ ${B('Aún no has llamado 3era vez')}\n\n${M.n} — 2 llamadas hechas, la 3era no se hace.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "72H", urg: "u-crit", urgTxt: "🚨 Final", msg: `🚨 ${B('3era llamada pendiente — Se va a inacción')}\n\n${M.n} — 72h sin tercer intento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('+96H — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - C2` }
+                ], ext: []
+            },
 
-        function switchSubTab(stageId, tabType) {
-            const section = document.getElementById(stageId);
-            section.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            section.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            {
+                id: 4, name: "Llamada 3 (Último)", icon: "📵", desc: "Tercer y último intento. Si no contesta → breakup message y cierre definitivo.",
+                int: [
+                    { ch: "slack", time: "24H", urg: "u-crit", urgTxt: "🔴 ÚLTIMA", msg: `🔴 ${B('ÚLTIMA LLAMADA — Ahora o nunca')}\n\n${M.n} — ${B('3er y último intento.')} \n\n📞 ${M.ph}\n👉 ${M.lk}\n\nSi no contesta → breakup y cerrar.` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Sin hacer", msg: `⚠️ ${B('Última llamada AÚN no se hace')}\n\n${M.n} — 48h desde que se debía hacer el último intento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "72H", urg: "u-crit", urgTxt: "🚨 Cierre", msg: `🚨 ${B('Se va a inacción en 24h')}\n\n${M.n} — la última llamada no se ha hecho en 72h.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('+96H — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - C3` }
+                ], ext: [
+                    { ch: "wa", time: "Al cerrar", urg: "u-crit", urgTxt: "📱 Breakup", msg: `Hola ${M.fn}, soy Laura. Veo que no hemos podido coincidir en estos días.\n\nCerramos tu archivo temporalmente para enfocarnos en las familias que están listas para iniciar el proceso de compra de casa.\n\nSi en algún momento decides que es tu turno, guárdate nuestro número y contáctanos cuando quieras retomar. ¡Mucho éxito!` },
+                    { ch: "email", time: "Al cerrar", urg: "u-crit", urgTxt: "📧 Breakup", subj: `{{contact.first_name}}, cerramos tu archivo temporalmente`, msg: `Hola ${M.fn},\n\nTe hemos intentado contactar ${B('3 veces')} para ayudarte a validar si puedes comprar casa, pero no hemos logrado comunicarnos.\n\n${B('Cerramos tu archivo temporalmente.')} Si en algún momento decides que es tu turno:\n📞 Llámanos directamente\n📧 Responde este email\n\n¡Mucho éxito!\nLaura — Equipo Christian Funes "Financing First"` }
+                ]
+            },
 
-            section.querySelector('.tab-content.' + tabType).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
+            {
+                id: 5, name: "Agendada", icon: "📅", desc: "Contacto agendó videollamada. Recordatorios internos y externos para garantizar asistencia.",
+                int: [
+                    { ch: "slack", time: "0H — Inmediato", urg: "u-ok", urgTxt: "📅 Agendada", msg: `📅 ${B('CITA AGENDADA')}\n\n${M.n} agendó videollamada.\n📅 ${M.apdt} — 🕐 ${M.aptm}\n\n👉 ${M.lk}\n\nConfirma la cita ahora.` },
+                    { ch: "slack", time: "-24H", urg: "u-info", urgTxt: "⏰ Mañana", msg: `⏰ ${B('CITA MAÑANA')}\n\n${M.n} tiene videollamada MAÑANA.\n📅 ${M.apdt} a las ${M.aptm}\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "-2H", urg: "u-warn", urgTxt: "🔔 En 2H", msg: `🔔 ${B('CITA EN 2 HORAS')}\n\n${M.n}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "-10 MIN", urg: "u-crit", urgTxt: "🔴 AHORA", msg: `🔴 ${B('CITA EN 10 MINUTOS')}\n\n${M.n}\n👉 ${M.lk}` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "✅ Confirmada", msg: `¡Hola ${M.fn}! 🎉 Tu llamada con el equipo de Christian Funes está confirmada:\n\n📅 ${M.apdt}\n🕐 ${M.aptm}\n\n¡Llamada agendada! Ten en cuenta esto para la videollamada. ¿Preguntas? Responde aquí.` },
+                    { ch: "sms", time: "-24H", urg: "u-info", urgTxt: "📲 Recordatorio", msg: `${M.fn}, mañana tenemos llamada agendada. ¡Te esperamos! — Equipo Christian Funes` },
+                    { ch: "sms", time: "-10 MIN", urg: "u-crit", urgTxt: "🔔 Ahora", msg: `${M.fn}, como quedamos, en 10 min te llamamos. ¡Prepárate! — Equipo Christian Funes` }
+                ]
+            },
 
-        function copyText(btn) {
-            const textToCopy = btn.parentElement.innerText.replace('Copy', '').trim();
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i data-lucide="check" width="14"></i> Copied!';
-                lucide.createIcons();
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    lucide.createIcons();
-                }, 2000);
-            });
-        }
+            {
+                id: 6, name: "Formulario + ID", icon: "📋", desc: "Post-llamada exitosa. Se envía formulario de 7 preguntas + ID. Fórmula Híbrida: si no llena online, se hace en llamada manual.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ Enviado", msg: `📋 ${B('FORMULARIO ENVIADO')}\n\nSe le acaba de enviar el formulario a ${M.n}. Haz seguimiento.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Sin llenar", msg: `⚠️ ${B('24H — Formulario sin llenar')}\n\n${M.n} aún no envía el formulario. Las primeras horas son críticas.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Pendiente", msg: `⚠️ ${B('48H — Aún no el formulario')}\n\n${M.n} — hazle seguimiento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "96H (4D)", urg: "u-crit", urgTxt: "🚨 Enfriándose", msg: `🔴 ${B('4 DÍAS — Se está enfriando')}\n\n${M.n} no ha llenado el formulario. Llama y asegura.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "email", time: "7D", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `📋 {{contact.first_name}} — 1 semana sin formulario`, msg: `${M.n} lleva ${B('1 semana sin enviar el formulario.')} Llámalo y actualiza.\n\n• Tel: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\n— Notificación automática GHL` },
+                    { ch: "slack", time: "13D", urg: "u-crit", urgTxt: "🚨 ÚLTIMO DÍA", msg: `🚨 ${B('ÚLTIMA OPORTUNIDAD')}\n\nMañana ${M.n} pasa a inacción. ${B('Llámalo AHORA.')}\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('14D — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - Formulario` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "✅ Formulario", msg: `¡Excelente charla! ✅ Según lo conversado, el siguiente paso para blindar tu aprobación es completar el siguiente formato breve (toma 2 minutos) y anexar una foto de tu ID/Licencia.\n\n👉 Entra aquí para enviarlo:\n${M.form}\n\nUna vez lo envíes, avanzamos a la etapa de estructuración total. ¡Cualquier duda, estoy aquí!\n— Equipo Christian Funes` },
+                    { ch: "sms", time: "0H", urg: "u-ok", urgTxt: "📲 Link", msg: `${M.fn}, por favor llena este formulario para validar tu préstamo: ${M.form} — Equipo Christian Funes` },
+                    { ch: "wa", time: "24H", urg: "u-info", urgTxt: "📱 24H", msg: `Hola ${M.fn} 👋 Aún no recibimos tu formulario. Por favor llénalo: ${M.form}\n\nSolo toma 2 min. ¡Estamos a un paso!` },
+                    { ch: "sms", time: "48H", urg: "u-warn", urgTxt: "⚠️ 48H", msg: `${M.fn}, aún no llenas el formulario. Si necesitas ayuda, ¡contáctanos! ${M.form} — Equipo Christian Funes` },
+                    { ch: "wa", time: "72H", urg: "u-warn", urgTxt: "⚠️ 72H", msg: `${M.fn}, aún no recibimos tu formulario. ¿Sigues interesado?\n\n👉 ${M.form}` },
+                    { ch: "sms", time: "96H (4D)", urg: "u-crit", urgTxt: "🚨 4D", msg: `${M.fn}, como no recibimos el formulario vamos a asumir que ya no estás interesado y daremos prioridad a otras personas. — Equipo Christian Funes` },
+                    { ch: "wa", time: "7D", urg: "u-info", urgTxt: "📱 7D", msg: `${M.fn}, imagino andas ocupado/a. ¿Aún sigues interesado/a en comprar casa? Estamos aquí.\n\n👉 ${M.form}` }
+                ]
+            },
+
+            {
+                id: 7, name: "Documentos", icon: "📄", desc: "Lead preaprobado. Requiere subir W2, Tax Returns, Bank Statements e ID vía portal de carga.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ Pre-aprobado", msg: `✅ ${B('PRE-APROBADO — Pendiente docs')}\n\n${M.n} está pre aprobado. Pendiente que envíe documentos.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Sin docs", msg: `⚠️ ${B('24H — Sin documentos')}\n\n${M.n} aún no envía docs. Hazle seguimiento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ 48H", msg: `⚠️ ${B('48H — Aún sin docs')}\n\n${M.n} — hazle seguimiento.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "slack", time: "96H (4D)", urg: "u-crit", urgTxt: "🚨 Enfriándose", msg: `🔴 ${B('4 DÍAS — Se está enfriando')}\n\n${M.n} no ha enviado docs. Llama y asegura.\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "email", time: "7D", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `📄 {{contact.first_name}} — 1 semana sin documentos`, msg: `${M.n} lleva ${B('1 semana sin enviar documentos.')} Llámalo.\n\n• Tel: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\n— Notificación automática GHL` },
+                    { ch: "slack", time: "13D", urg: "u-crit", urgTxt: "🚨 ÚLTIMO", msg: `🚨 ${B('ÚLTIMA OPORTUNIDAD')}\n\nMañana ${M.n} pasa a inacción. ${B('Llámalo AHORA.')}\n\n📞 ${M.ph}\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('14D — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - Documentos` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "🎉 Pre-aprobado", msg: `🎉 ${B('¡ESTÁS PRE APROBADO!')} Solo falta un paso antes de conseguir tu préstamo.\n\nHaz esta aplicación y sube tus documentos:\n👉 ${M.docs}\n\n${B('Documentos requeridos:')}\n✅ Licencia de Conducir / ID\n✅ Tax Returns (2024 y 2023)\n✅ Bank Statements (2 meses recientes)\n\n— Equipo Christian Funes` },
+                    { ch: "sms", time: "0H", urg: "u-ok", urgTxt: "📲 Link", msg: `🎉 ¡Estás pre aprobado ${M.fn}! Solo falta subir tus documentos: ${M.docs} — Equipo Christian Funes` },
+                    { ch: "wa", time: "24H", urg: "u-info", urgTxt: "📱 24H", msg: `Hola ${M.fn} 👋 Aún no recibimos tus documentos. Por favor envíalos:\n\n👉 ${M.docs}` },
+                    { ch: "sms", time: "48H", urg: "u-warn", urgTxt: "⚠️ 48H", msg: `${M.fn}, aún no vemos tus documentos. Si necesitas ayuda para subirlos, ¡contáctanos! ${M.docs}` },
+                    { ch: "wa", time: "72H", urg: "u-warn", urgTxt: "⚠️ 72H", msg: `${M.fn}, aún no recibimos docs. ¿Sigues interesado?\n\n👉 ${M.docs}` },
+                    { ch: "sms", time: "96H (4D)", urg: "u-crit", urgTxt: "🚨 4D", msg: `${M.fn}, como no recibimos los documentos vamos a asumir que ya no estás interesado. — Equipo Christian Funes` },
+                    { ch: "wa", time: "7D", urg: "u-info", urgTxt: "📱 7D", msg: `${M.fn}, imagino sigues ocupado/a. ¿Aún sigues interesado/a? Estamos aquí.\n\n👉 ${M.docs}` }
+                ]
+            },
+
+            {
+                id: 8, name: "Base Underwriting", icon: "🏦", desc: "Documentos completos. Carpeta va a bancos/lenders para aprobación blindada definitiva.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ A bancos", msg: `🏦 ${B('DOCS COMPLETOS — Enviando a bancos')}\n\nTodos los documentos de ${M.n} están completos. Envía la aplicación a los bancos.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Actualizar", msg: `🏦 ${B('24H — ¿Respuesta del banco?')}\n\nYa deberías tener razón del banco para ${M.n}. Actualiza la oportunidad.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ 48H", msg: `🏦 ${B('48H — ¿Actualización?')}\n\n¿Ya recibiste respuesta del banco para ${M.n}? Actualiza y avisa al cliente.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "96H", urg: "u-crit", urgTxt: "🚨 Urgente", msg: `🚨 ${B('96H — Pendiente')}\n\n¿Actualización del banco para ${M.n}? Actualiza oportunidad.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "13D", urg: "u-crit", urgTxt: "🚨 ÚLTIMO", msg: `🚨 Mañana ${M.n} pasa a inacción. Actualiza AHORA.\n\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('14D — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - Aplicación` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "🎉 Recibido", msg: `🎉 ${B('¡RECIBIMOS TUS DOCUMENTOS!')}\n\nYa mismo vamos a comenzar a aplicar con los bancos. En menos de 24 horas deberías saber de nosotros.\n\n¡Estás muy cerca! — Equipo Christian Funes` },
+                    { ch: "sms", time: "0H", urg: "u-ok", urgTxt: "📲 Confirmación", msg: `${M.fn}, ¡recibimos tus documentos! Estamos aplicando con los bancos. Te contactamos en menos de 24h. — Equipo Christian Funes` }
+                ]
+            },
+
+            {
+                id: 9, name: "Búsqueda + Oferta", icon: "🏠", desc: "Cliente aprobado por el banco. Sale a buscar casa con su Realtor con poder de 'Cash Buyer'.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ Aprobado", msg: `🏠 ${B('CLIENTE APROBADO')}\n\n${M.n} entra a etapa de mirar casa. Haz seguimiento.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "1M (30D)", urg: "u-info", urgTxt: "📅 1 Mes", msg: `📅 ${B('30 DÍAS')}\n\n¿Qué ha pasado con ${M.n}?\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "2M (60D)", urg: "u-warn", urgTxt: "⚠️ 2 Meses", msg: `⚠️ ${B('60 DÍAS')}\n\n¿Qué ha pasado con ${M.n}?\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "3M (90D)", urg: "u-warn", urgTxt: "⚠️ 3 Meses", msg: `⚠️ ${B('90 DÍAS')}\n\nLa carta de aprobación de ${M.n} vence pronto.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "4M (120D)", urg: "u-crit", urgTxt: "🚨 4 Meses", msg: `🚨 ${B('120 DÍAS — Último mes')}\n\n${M.n} tiene un mes más.\n\n👉 ${M.lk}` },
+                    { ch: "auto", msg: `${B('5M (150D) — Acción Automática:')} Mover a ${B('"13. Inacción"')}. Tag: Inacción - Búsqueda Casa` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "🎉 Aprobado", msg: `🎉 ${B('¡ESTÁS APROBADO!')} por el banco.\n\nSiguiente paso: sales a buscar tu casa con tu Realtor con poder de comprador en efectivo.\n\n¡Felicidades! — Equipo Christian Funes` },
+                    { ch: "sms", time: "1M", urg: "u-info", urgTxt: "📲 30D", msg: `${M.fn}, ¿cómo va la búsqueda de casa con tu Realtor? Ya llevamos 30 días. — Equipo Christian Funes` },
+                    { ch: "sms", time: "2M", urg: "u-info", urgTxt: "📲 60D", msg: `${M.fn}, ya llevamos 60 días. ¿Cómo va la búsqueda? — Equipo Christian Funes` },
+                    { ch: "wa", time: "3M", urg: "u-warn", urgTxt: "⚠️ 90D", msg: `${M.fn}, la carta de aprobación es válida por 2 meses más. ¿Cómo va todo?` },
+                    { ch: "sms", time: "4M", urg: "u-crit", urgTxt: "🚨 120D", msg: `${M.fn}, tienes un mes más con la aprobación. ¿Cómo va todo? — Equipo Christian Funes` },
+                    { ch: "wa", time: "5M — Cierre", urg: "u-crit", urgTxt: "🚨 Expiración", msg: `${M.fn}, como no tomaste acción, habilitaremos el cupo del banco para otro cliente. Si deseas retomar, contáctanos.` }
+                ]
+            },
+
+            {
+                id: 10, name: "Con Contrato", icon: "✅", desc: "Cliente encontró casa y entra bajo contrato. Cierre hipotecario.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "🏆 Cierre", msg: `🏆 ${B('¡FELICITACIONES!')}\n\nLograste llevar a ${M.n} hasta el resultado final. Gracias a ti hoy una familia nueva tiene su propio hogar. 💪\n\n👉 ${M.lk}` }
+                ], ext: [
+                    { ch: "wa", time: "0H", urg: "u-ok", urgTxt: "🎉 Felicitaciones", msg: `🎉 ${B('¡Felicitaciones!')} La casa que escogiste está bajo contrato.\n\nEstos son los siguientes pasos. ¡Tu sueño se está haciendo realidad! — Equipo Christian Funes` },
+                    { ch: "sms", time: "0H", urg: "u-ok", urgTxt: "📲 Confirmación", msg: `🎉 ¡Felicitaciones ${M.fn}! Tu casa está bajo contrato. Te acompañamos en los siguientes pasos. — Equipo Christian Funes` }
+                ]
+            },
+
+            {
+                id: 11, name: "No Califica", icon: "🚫", desc: "Cliente sin viabilidad financiera. Archivo cerrado limpiamente. Sin automatizaciones para proteger reputación.",
+                int: [
+                    { ch: "slack", time: "Al mover", urg: "u-crit", urgTxt: "🚫 Cerrado", msg: `🚫 ${B('NO CALIFICA — Archivo cerrado')}\n\n${M.n} — Tag: [DQ]. Sin comunicaciones automáticas. Salida limpia manual.\n\n👉 ${M.lk}` }
+                ], ext: []
+            },
+
+            {
+                id: 12, name: "Coaching", icon: "📈", desc: "Cliente con interés pero requiere mejorar crédito o estructuración antes de aplicar.",
+                int: [
+                    { ch: "slack", time: "0H", urg: "u-ok", urgTxt: "📈 Coaching", msg: `📈 ${B('ENTRA A COACHING')}\n\n${M.n} entra a coaching. Hazle seguimiento.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "1M", urg: "u-info", urgTxt: "📅 1 Mes", msg: `📅 ${B('1 MES en coaching')}\n\n${M.n} — ¿Qué ha pasado? Actualiza estado.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "3M", urg: "u-warn", urgTxt: "⚠️ 3 Meses", msg: `⚠️ ${B('3 MESES en coaching')}\n\n${M.n} — Actualiza estado.\n\n👉 ${M.lk}` },
+                    { ch: "slack", time: "6M", urg: "u-crit", urgTxt: "🚨 6 Meses", msg: `🚨 ${B('6 MESES en coaching')}\n\n${M.n} — Actualiza estado.\n\n👉 ${M.lk}` }
+                ], ext: [
+                    { ch: "email", time: "Mensual", urg: "u-info", urgTxt: "📧 Nurture", subj: `Estrategias para mejorar crédito — Christian Funes`, msg: `Hola ${M.fn},\n\n📈 ${B('Estrategias para mejorar crédito y proteger tu negocio')}\n🏠 ${B('Casos de éxito de latinos Self-Employed')}\n\nCuando estés listo/a, estamos aquí.\n\n— Equipo Christian Funes "Financing First"` }
+                ]
+            },
+
+            {
+                id: 13, name: "Inacción", icon: "💤", desc: "Lead descartado por estancarse en cualquier etapa previa. Último mensaje motivacional al equipo.",
+                int: [
+                    { ch: "slack", time: "0H — Al caer", urg: "u-crit", urgTxt: "🚨 INACCIÓN", msg: `🚨 ${B('ESTO NO PUEDE PASAR')}\n\n${M.n} cayó a inacción. Es inaceptable — nos cuesta tiempo y dinero.\n\n${B('Aún puedes contactarlo.')}\n\n📞 ${M.ph}\n👉 ${M.lk}` }
+                ], ext: [
+                    { ch: "email", time: "Nutrición", urg: "u-info", urgTxt: "📧 Reactivación", subj: `{{contact.first_name}}, ¿aún piensas en comprar casa?`, msg: `Hola ${M.fn},\n\nHace un tiempo mostraste interés en comprar casa.\n\n${B('Seguimos aquí para ayudarte')} cuando estés listo/a. Miles de familias hispanas ya lo lograron.\n\n📞 Llámanos o responde este email.\n\n— Equipo Christian Funes "Financing First"` }
+                ]
+            }
+        ];
+        // ── RENDER ──
+        const tabsEl = document.getElementById('tabs'); const contentEl = document.getElementById('content');
+        stages.forEach((s, i) => {
+            const btn = document.createElement('button'); btn.className = 'tab' + (i === 0 ? ' active' : ''); btn.innerHTML = `<span class="tn">${s.id}</span>${s.icon} ${s.name}`; btn.onclick = () => { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active')); document.getElementById('s' + s.id).classList.add('active') }; tabsEl.appendChild(btn);
+            const panel = document.createElement('div'); panel.id = 's' + s.id; panel.className = 'stage-panel' + (i === 0 ? ' active' : '');
+            let h = `<div class="stage-title"><h2>${s.icon} ${s.id}. ${s.name}</h2></div><p class="stage-desc">${s.desc}</p>`;
+            const hasExt = s.ext && s.ext.length > 0;
+            if (hasExt) { h += `<div class="sub-tabs"><button class="sub-tab active-int" onclick="switchSub(this,'int',${s.id})">🔒 Interna (Equipo)</button><button class="sub-tab" onclick="switchSub(this,'ext',${s.id})">📣 Externa (Cliente)</button></div>` }
+            else { h += `<div class="sub-tabs"><button class="sub-tab active-int">🔒 Interna (Equipo)</button><button class="sub-tab" style="opacity:.4;cursor:default">📣 Externa — N/A</button></div>` }
+            h += `<div id="int${s.id}" class="comm-panel active">${renderCards(s.int)}</div>`;
+            if (hasExt) { h += `<div id="ext${s.id}" class="comm-panel">${renderCards(s.ext)}</div>` }
+            panel.innerHTML = h; contentEl.appendChild(panel)
+        });
+        function renderCards(arr) { if (!arr || !arr.length) return '<p style="color:var(--txt-l);font-size:13px;padding:20px">Sin comunicaciones en esta categoría.</p>'; return arr.map(c => { if (c.ch === 'auto') return `<div class="auto"><span>⚡</span><span>${c.msg}</span></div>`; const chMap = { slack: 'Slack / GHL App', email: 'Email (Gmail)', sms: 'SMS', wa: 'WhatsApp' }; let card = `<div class="card"><div class="card-h"><div class="card-left"><span class="ch ch-${c.ch}">${chMap[c.ch] || c.ch}</span><span class="time">⏱ ${c.time}</span></div><span class="urg ${c.urg}">${c.urgTxt}</span></div><div class="card-b">`; if (c.subj) card += `<div class="subj">📌 Asunto: ${c.subj}</div>`; card += `<div class="lbl">${c.ch === 'sms' ? 'Texto SMS' : c.ch === 'wa' ? 'Mensaje WhatsApp' : c.ch === 'email' ? 'Cuerpo del Email' : 'Mensaje ' + chMap[c.ch]}</div><div class="msg">${c.msg}</div></div></div>`; return card }).join('') }
+        function switchSub(btn, type, id) { const parent = btn.parentElement; parent.querySelectorAll('.sub-tab').forEach(b => { b.classList.remove('active-int', 'active-ext') }); btn.classList.add(type === 'int' ? 'active-int' : 'active-ext'); document.getElementById('int' + id).classList.toggle('active', type === 'int'); const ext = document.getElementById('ext' + id); if (ext) ext.classList.toggle('active', type === 'ext') }
     </script>
 </body>
 

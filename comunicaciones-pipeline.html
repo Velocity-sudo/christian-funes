@@ -497,22 +497,91 @@
                                 class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
                         </div>
                     </div>
-                </div>
 
-                <div class="tab-content internal">
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-high">HIGH (+1H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>⏳ *Recordatorio: Lead sin contactar (+1H)*
+                            Laura, este prospecto llenó sus datos hace 1 hora y aún no lo has llamado.
+                            Llámalo tan pronto puedas.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-high">HIGH (+12H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>⚠️ *Recordatorio: Debe ser contactado hoy (+12H)*
+                            Laura, este prospecto entró hace medio día. No te olvides de llamarlo hoy mismo.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+24H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>📉 *Llamar URGENTE: Enfriándose (+24H)*
+                            Laura, ya pasó un día entero y no hemos llamado a este lead. La probabilidad de cierre está
+                            bajando. Atiéndelo de inmediato.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+48H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>❄️ *Lead perdiendo interés (+48H)*
+                            Laura, ya pasaron 2 días. La probabilidad de cierre bajó mucho más. Llama para agendar la
+                            llamada 1.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+72H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>🧊 *Última oportunidad (+72H)*
+                            Laura, pasaron 3 días. Mañana el prospecto será movido a Inacción. Intenta un contacto por
+                            llamada ahora mismo para salvarlo.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+
                     <div class="logic-card">
-                        <h4><i data-lucide="activity"></i> Reglas de Seguimiento Interno (Etapa 1)</h4>
+                        <h4><i data-lucide="activity"></i> +96H</h4>
                         <ul>
-                            <li><strong>+1H:</strong> "Llenó form y aún no lo has llamado. Llámalo tan pronto puedas."
-                            </li>
-                            <li><strong>+12H:</strong> "No te olvides de contactar al lead, debe ser hoy mismo."</li>
-                            <li><strong>+24H:</strong> "Pasó un día y no lo llamaste, la probabilidad de cierre bajó."
-                            </li>
-                            <li><strong>+48H:</strong> "Pasaron 2 días y no lo llamaste, la probabilidad de cierre bajó
-                                aún más."</li>
-                            <li><strong>+72H:</strong> "Pasaron 3 días y no lo llamaste, la probabilidad de cierre bajó
-                                aún más, en un día se moverá a inacción."</li>
-                            <li><strong>+96H:</strong> Se mueve a INACCIÓN automáticamente.</li>
+                            <li>Si no hay respuesta, el sistema pasa al usuario automáticamente a pipeline stage
+                                <strong>Inacción</strong>.</li>
                         </ul>
                     </div>
                 </div>

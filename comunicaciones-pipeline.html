@@ -581,7 +581,8 @@
                         <h4><i data-lucide="activity"></i> +96H</h4>
                         <ul>
                             <li>Si no hay respuesta, el sistema pasa al usuario automáticamente a pipeline stage
-                                <strong>Inacción</strong>.</li>
+                                <strong>Inacción</strong>.
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -628,6 +629,50 @@
                             intento. Llamar nuevamente para hacer el filtro de viabilidad.
                         </div>
                     </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+24H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Llámalo 2nd vez.
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+48H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado 2nd vez.
+                        </div>
+                    </div>
+
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado 2nd vez, se va a ir a inacción.
+                        </div>
+                    </div>
+
+                    <div class="logic-card">
+                        <h4><i data-lucide="activity"></i> +96H</h4>
+                        <ul>
+                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
+                                <strong>Inacción</strong> con tag `inacción - c1`.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="tab-content external">
@@ -650,20 +695,65 @@
 
             <!-- STAGE 3: Llamada 2 -->
             <section id="stage-3" class="stage-section">
-                <!-- Similar logic, abbreviated for succinctness but full in file -->
                 <div class="stage-header">
                     <h2><i data-lucide="phone-call"></i> 3. Llamada 2 (Sin Respuesta)</h2>
                     <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 2".
+                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 2".<br>
+                        <strong>Tags:</strong> <code>[Accion] Intentar L3</code>
                     </div>
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-3', 'external')"><i
+                    <button class="tab-btn active" onclick="switchSubTab('stage-3', 'internal')"><i
+                            data-lucide="users"></i> INTERNO</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-3', 'external')"><i
                             data-lucide="message-square"></i> EXTERNO</button>
                 </div>
 
-                <div class="tab-content external active">
+                <div class="tab-content internal active">
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+24H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Llámalo 3era vez.
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+48H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado 3era vez.
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado 3era vez, se va a ir a inacción.
+                        </div>
+                    </div>
+                    <div class="logic-card">
+                        <h4><i data-lucide="activity"></i> +96H</h4>
+                        <ul>
+                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
+                                <strong>Inacción</strong> con tag `inacción - c2`.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-content external">
                     <div class="logic-card">
                         <h4><i data-lucide="slash"></i> Silencio Externo</h4>
                         <p>No se enviarán comunicaciones externas en esta etapa. El Lead queda esperando el tercer (y
@@ -676,12 +766,63 @@
             <section id="stage-4" class="stage-section">
                 <div class="stage-header">
                     <h2><i data-lucide="phone-off"></i> 4. Llamada 3 (Último Intento)</h2>
+                    <div class="stage-triggers">
+                        <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 3".<br>
+                        <strong>Tags:</strong> <code>[Accion] Intentar L4</code> (O Último Breakup)
+                    </div>
                 </div>
+
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-4', 'external')"><i
+                    <button class="tab-btn active" onclick="switchSubTab('stage-4', 'internal')"><i
+                            data-lucide="users"></i> INTERNO</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-4', 'external')"><i
                             data-lucide="message-square"></i> EXTERNO</button>
                 </div>
-                <div class="tab-content external active">
+
+                <div class="tab-content internal active">
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+24H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Llámalo última vez.
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-med">MED (+48H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado última vez.
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
+                            <span class="urgency-badge urgency-high">HIGH (+72H)</span>
+                        </div>
+                        <div class="message-body">
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Aún no lo has llamado última vez. Se va a ir a inacción.
+                        </div>
+                    </div>
+                    <div class="logic-card">
+                        <h4><i data-lucide="activity"></i> +96H</h4>
+                        <ul>
+                            <li>Si no hay acción, el sistema mueve al prospecto automáticamente a pipeline stage
+                                <strong>Inacción</strong> con tag `inacción - c3`.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-content external">
                     <div class="message-card">
                         <div class="message-header">
                             <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"

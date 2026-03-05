@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GHL Communications Pipeline - Christian Funes</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -20,15 +23,19 @@
             --cf-text: #1E293B;
             --cf-text-light: #64748B;
             --cf-white: #FFFFFF;
-            
+
             /* Status Colors */
-            --status-urgent: #EF4444;       /* Rojo GHL / Slack Urgent */
+            --status-urgent: #EF4444;
+            /* Rojo GHL / Slack Urgent */
             --status-urgent-bg: #FEF2F2;
-            --status-high: #F59E0B;         /* Amarillo / Naranja */
+            --status-high: #F59E0B;
+            /* Amarillo / Naranja */
             --status-high-bg: #FFFBEB;
-            --status-med: #2563EB;          /* Azul */
+            --status-med: #2563EB;
+            /* Azul */
             --status-med-bg: #EFF6FF;
-            --status-success: #10B981;      /* Verde */
+            --status-success: #10B981;
+            /* Verde */
             --status-success-bg: #ECFDF5;
 
             /* Platform Colors */
@@ -36,7 +43,7 @@
             --whatsapp-color: #25D366;
             --sms-color: #8B5CF6;
             --email-color: #3B82F6;
-            
+
             font-family: 'Inter', sans-serif;
         }
 
@@ -48,7 +55,10 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Montserrat', sans-serif;
             margin-top: 0;
         }
@@ -59,7 +69,7 @@
             padding: 2rem;
             text-align: center;
             border-bottom: 4px solid var(--cf-gold);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
@@ -88,7 +98,7 @@
             background: var(--cf-white);
             border-radius: 12px;
             padding: 1.5rem 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 2rem;
             height: fit-content;
@@ -139,7 +149,7 @@
         .content-area {
             background: var(--cf-white);
             border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             min-height: 500px;
             overflow: hidden;
         }
@@ -154,8 +164,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .stage-header {
@@ -256,11 +273,27 @@
             color: white;
         }
 
-        .platform-slack { background-color: var(--slack-color); }
-        .platform-whatsapp { background-color: var(--whatsapp-color); }
-        .platform-sms { background-color: var(--sms-color); }
-        .platform-email { background-color: var(--email-color); }
-        .platform-ghl { background-color: #00ADEF; } /* GHL specific tasks */
+        .platform-slack {
+            background-color: var(--slack-color);
+        }
+
+        .platform-whatsapp {
+            background-color: var(--whatsapp-color);
+        }
+
+        .platform-sms {
+            background-color: var(--sms-color);
+        }
+
+        .platform-email {
+            background-color: var(--email-color);
+        }
+
+        .platform-ghl {
+            background-color: #00ADEF;
+        }
+
+        /* GHL specific tasks */
 
         .urgency-badge {
             font-size: 0.75rem;
@@ -270,10 +303,29 @@
             text-transform: uppercase;
         }
 
-        .urgency-urt { background: var(--status-urgent-bg); color: var(--status-urgent); border: 1px solid currentColor; }
-        .urgency-high { background: var(--status-high-bg); color: var(--status-high); border: 1px solid currentColor; }
-        .urgency-med { background: var(--status-med-bg); color: var(--status-med); border: 1px solid currentColor; }
-        .urgency-info { background: var(--status-success-bg); color: var(--status-success); border: 1px solid currentColor; }
+        .urgency-urt {
+            background: var(--status-urgent-bg);
+            color: var(--status-urgent);
+            border: 1px solid currentColor;
+        }
+
+        .urgency-high {
+            background: var(--status-high-bg);
+            color: var(--status-high);
+            border: 1px solid currentColor;
+        }
+
+        .urgency-med {
+            background: var(--status-med-bg);
+            color: var(--status-med);
+            border: 1px solid currentColor;
+        }
+
+        .urgency-info {
+            background: var(--status-success-bg);
+            color: var(--status-success);
+            border: 1px solid currentColor;
+        }
 
         .message-body {
             padding: 1.5rem;
@@ -340,6 +392,7 @@
             .container {
                 grid-template-columns: 1fr;
             }
+
             .sidebar {
                 position: static;
                 max-height: none;
@@ -347,6 +400,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header class="header">
@@ -401,7 +455,7 @@
 
         <!-- Main Content -->
         <main class="content-area">
-            
+
             <!-- STAGE 1: REGISTRO -->
             <section id="stage-1" class="stage-section active">
                 <div class="stage-header">
@@ -413,65 +467,62 @@
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-1', 'internal')"><i data-lucide="users"></i> INTERNO (Equipo)</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-1', 'external')"><i data-lucide="message-square"></i> EXTERNO (Cliente)</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-1', 'internal')"><i
+                            data-lucide="users"></i> INTERNO (Equipo)</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-1', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO (Cliente)</button>
                 </div>
 
                 <!-- Internal Comms S1 -->
                 <div class="tab-content internal active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack / GHL App</span>
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack /
+                                GHL App</span>
                             <span class="urgency-badge urgency-urt">URGENTE (0m)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>🚨 *NUEVO LEAD - LLAMAR AHORA* 🚨
-¡Laura! Entró un nuevo Lead. Tenemos 5 minutos de oro para conectar.
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>🚨 *NUEVO LEAD - LLAMAR AHORA* 🚨
+                            ¡Laura! Entró un nuevo Lead. Tenemos 5 minutos de oro para conectar.
 
-*Nombre:* <span class="ghl-var">{{contact.name}}</span>
-*Teléfono:* <span class="ghl-var">{{contact.phone}}</span>
-*Email:* <span class="ghl-var">{{contact.email}}</span>
-*Fuente:* <span class="ghl-var">{{contact.source}}</span>
+                            *Nombre:* <span class="ghl-var">{{contact.name}}</span>
+                            *Teléfono:* <span class="ghl-var">{{contact.phone}}</span>
+                            *Email:* <span class="ghl-var">{{contact.email}}</span>
+                            *Fuente:* <span class="ghl-var">{{contact.source}}</span>
 
-👉 *Instrucción:* Toca el enlace para llamar ahora y hacer el filtro de viabilidad de 15 min. Actualiza el pipeline tras la llamada.
-<span class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>                        </div>
+                            👉 *Instrucción:* Toca el enlace para llamar ahora y hacer el filtro de viabilidad de 15
+                            min. Actualiza el pipeline tras la llamada.
+                            <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content internal">
+                    <div class="logic-card">
+                        <h4><i data-lucide="activity"></i> Reglas de Seguimiento Interno (Etapa 1)</h4>
+                        <ul>
+                            <li><strong>+1H:</strong> "Llenó form y aún no lo has llamado. Llámalo tan pronto puedas."
+                            </li>
+                            <li><strong>+12H:</strong> "No te olvides de contactar al lead, debe ser hoy mismo."</li>
+                            <li><strong>+24H:</strong> "Pasó un día y no lo llamaste, la probabilidad de cierre bajó."
+                            </li>
+                            <li><strong>+48H:</strong> "Pasaron 2 días y no lo llamaste, la probabilidad de cierre bajó
+                                aún más."</li>
+                            <li><strong>+72H:</strong> "Pasaron 3 días y no lo llamaste, la probabilidad de cierre bajó
+                                aún más, en un día se moverá a inacción."</li>
+                            <li><strong>+96H:</strong> Se mueve a INACCIÓN automáticamente.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- External Comms S1 -->
                 <div class="tab-content external">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp</span>
-                            <span class="urgency-badge urgency-info">INFO (0m)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>¡Hola <span class="ghl-var">{{contact.first_name}}</span>! Soy Laura, del equipo de Christian Funes 🏠. 
-
-Recibimos tu solicitud para conocer tu poder de compra real y acceder al método *Financing First*.
-
-Me gustaría hacerte 3 preguntas rápidas para asegurarnos de que podemos ayudarte. ¿Es buen momento para llamarte en los próximos 5 minutos?                        </div>
-                    </div>
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-email"><i data-lucide="mail" width="14"></i> Email</span>
-                            <span class="urgency-badge urgency-info">INFO (0m)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button><strong>Asunto:</strong> Solicitud recibida: Tu camino a casa con Christian Funes 🏠
-
-Hola <span class="ghl-var">{{contact.first_name}}</span>,
-
-¡Felicidades por dar el primer paso hacia tu nueva casa en EE.UU.!
-
-Recibimos tu solicitud y estamos listos para evaluar tu poder de compra real usando nuestro protocolo exclusivo **"Financing First"**. Sabemos que como dueño de negocio (o self-employed), tu situación exige una estrategia diferente a la del banco tradicional.
-
-Nuestra Asistente (Laura) te llamará en breve desde nuestro número principal para hacer un filtro rápido de 3 preguntas. Si tienes dudas, puedes responder directamente a este correo o escribirnos a nuestro WhatsApp.
-
-Hablemos pronto,
-El Equipo de Christian Funes
-"El Mortgage Broker de los Hispanos"
-<span class="ghl-var">{{location.phone}}</span>                        </div>
+                    <div class="logic-card">
+                        <h4><i data-lucide="slash"></i> Silencio Externo</h4>
+                        <p>No se enviarán comunicaciones externas en esta etapa. El objetivo y la sorpresa de la llamada
+                            de Laura es el factor clave de conversión aquí.</p>
                     </div>
                 </div>
             </section>
@@ -487,31 +538,43 @@ El Equipo de Christian Funes
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-2', 'internal')"><i data-lucide="users"></i> INTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-2', 'external')"><i data-lucide="message-square"></i> EXTERNO</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-2', 'internal')"><i
+                            data-lucide="users"></i> INTERNO</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-2', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO</button>
                 </div>
 
                 <div class="tab-content internal active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-ghl"><i data-lucide="check-square" width="14"></i> Tarea GHL</span>
+                            <span class="platform-badge platform-ghl"><i data-lucide="check-square" width="14"></i>
+                                Tarea GHL</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>Task Assigned to: Laura
-*Título:* Volver a intentar (Llamada 2)
-*Due Date:* 4 horas a partir de ahora.
-*Descripción:* El lead <span class="ghl-var">{{contact.name}}</span> no contestó el primer intento. Llamar nuevamente para hacer el filtro de viabilidad.                        </div>
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Task Assigned to: Laura
+                            *Título:* Volver a intentar (Llamada 2)
+                            *Due Date:* 4 horas a partir de ahora.
+                            *Descripción:* El lead <span class="ghl-var">{{contact.name}}</span> no contestó el primer
+                            intento. Llamar nuevamente para hacer el filtro de viabilidad.
+                        </div>
                     </div>
                 </div>
 
                 <div class="tab-content external">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp</span>
-                            <span class="urgency-badge urgency-info">INFO (+15m)</span>
+                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
+                                    width="14"></i> WhatsApp</span>
+                            <span class="urgency-badge urgency-info">INFO (+0m)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, intenté llamarte recién para conversar sobre tu calificación hipotecaria 🏠. ¿En qué horario te queda mejor que te marque hoy? Te habla Laura del equipo de Christian Funes.                        </div>
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, soy Laura del
+                            equipo de Christian Funes. Te llamé recién porque vi que querías validar si podías comprar
+                            casa con nuestro método. ¿En qué horario te queda mejor que te marque hoy para hacerte 3
+                            preguntas rápidas?
+                        </div>
                     </div>
                 </div>
             </section>
@@ -521,53 +584,59 @@ El Equipo de Christian Funes
                 <!-- Similar logic, abbreviated for succinctness but full in file -->
                 <div class="stage-header">
                     <h2><i data-lucide="phone-call"></i> 3. Llamada 2 (Sin Respuesta)</h2>
-                     <div class="stage-triggers">
+                    <div class="stage-triggers">
                         <strong>Triggers:</strong> Pipeline Stage Change to "Llamada 2".
                     </div>
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-3', 'external')"><i data-lucide="message-square"></i> EXTERNO</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-3', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO</button>
                 </div>
 
-                 <div class="tab-content external active">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp</span>
-                            <span class="urgency-badge urgency-med">MED (Inmediato)</span>
-                        </div>
-                        <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button><span class="ghl-var">{{contact.first_name}}</span>, de nuevo Laura por acá 👋. Veo que estás ocupado(a). Queremos ayudarte a estructurar tu préstamo para tu casa. Déjame saber si prefieres que agendemos una llamada mañana para que no interrumpa tu día. ¡Quedo atenta!                        </div>
+                <div class="tab-content external active">
+                    <div class="logic-card">
+                        <h4><i data-lucide="slash"></i> Silencio Externo</h4>
+                        <p>No se enviarán comunicaciones externas en esta etapa. El Lead queda esperando el tercer (y
+                            último) intento manual de llamada antes del breakup final.</p>
                     </div>
                 </div>
             </section>
 
-             <!-- STAGE 4: Llamada 3 -->
+            <!-- STAGE 4: Llamada 3 -->
             <section id="stage-4" class="stage-section">
                 <div class="stage-header">
                     <h2><i data-lucide="phone-off"></i> 4. Llamada 3 (Último Intento)</h2>
                 </div>
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-4', 'external')"><i data-lucide="message-square"></i> EXTERNO</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-4', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO</button>
                 </div>
                 <div class="tab-content external active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp</span>
+                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
+                                    width="14"></i> WhatsApp / Email</span>
                             <span class="urgency-badge urgency-high">HIGH (+24h)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, veo que no hemos podido coincidir 📱. Cerramos tu archivo temporalmente para enfocarnos en las familias que están listas para iniciar el proceso de compra.
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>, soy Laura. Veo
+                            que no hemos podido coincidir en estos días 📱. Cerramos tu archivo temporalmente para
+                            enfocarnos en las familias que están listas para iniciar el proceso de compra de casa.
 
-Si en algún momento decides que es tu turno de ser dueño de casa, por favor guárdate nuestro número y escríbenos o aplica directo aquí cuando quieras retomar: <span class="ghl-var">{{custom_values.application_link}}</span>.
+                            Si en algún momento decides que es tu turno, por favor guárdate nuestro número y contáctanos
+                            o aplica directo aquí cuando quieras retomar: <span
+                                class="ghl-var">{{custom_values.application_link}}</span>.
 
-¡Mucho éxito! 
-- Equipo de Christian Funes                        </div>
+                            ¡Mucho éxito!
+                            - Equipo de Christian Funes
+                        </div>
                     </div>
                 </div>
             </section>
 
-             <!-- STAGE 5: Agendada -->
+            <!-- STAGE 5: Agendada -->
             <section id="stage-5" class="stage-section">
                 <div class="stage-header">
                     <h2><i data-lucide="calendar"></i> 5. Llamada Agendada (Aprobación)</h2>
@@ -576,89 +645,116 @@ Si en algún momento decides que es tu turno de ser dueño de casa, por favor gu
                     </div>
                 </div>
 
-                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-5', 'external')"><i data-lucide="message-square"></i> EXTERNO (Cliente)</button>
-                     <button class="tab-btn" onclick="switchSubTab('stage-5', 'internal')"><i data-lucide="users"></i> INTERNO (Equipo)</button>
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="switchSubTab('stage-5', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO (Cliente)</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-5', 'internal')"><i data-lucide="users"></i>
+                        INTERNO (Equipo)</button>
                 </div>
 
                 <div class="tab-content external active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp (Confirmación)</span>
+                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
+                                    width="14"></i> WhatsApp (Confirmación)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>✅ ¡Excelente <span class="ghl-var">{{contact.first_name}}</span>! Tu Diagnóstico "Rayos X" con Christian está 100% confirmado.
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>✅ ¡Excelente <span class="ghl-var">{{contact.first_name}}</span>! Tu
+                            Diagnóstico "Rayos X" con Christian está 100% confirmado.
 
-📅 Fecha: <span class="ghl-var">{{appointment.start_time}}</span>
+                            📅 Fecha: <span class="ghl-var">{{appointment.start_time}}</span>
 
-Christian revisará tu situación para definir la mejor estrategia y evitar rechazos innecesarios por parte de los bancos. 
+                            Christian revisará tu situación para definir la mejor estrategia y evitar rechazos
+                            innecesarios por parte de los bancos.
 
-👉 **Importante:** Te llamaremos directo a este número a la hora acordada.                        </div>
+                            👉 **Importante:** Te llamaremos directo a este número a la hora acordada.
+                        </div>
                     </div>
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-sms"><i data-lucide="message-square" width="14"></i> SMS (-1 h)</span>
+                            <span class="platform-badge platform-sms"><i data-lucide="message-square" width="14"></i>
+                                SMS (-1 h)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>Recordatorio Christian Funes: Tu diagnóstico hipotecario es en 1 hora! 🏠 Te llamaremos puntual a este número.                        </div>
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Recordatorio Christian Funes: Tu diagnóstico hipotecario es en 1 hora! 🏠
+                            Te llamaremos puntual a este número.
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content internal">
-                     <div class="message-card">
+                    <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i> Slack</span>
+                            <span class="platform-badge platform-slack"><i data-lucide="slack" width="14"></i>
+                                Slack</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>📅 *NUEVA CITA AGENDADA*
-Christian, tienes un diagnóstico con:
-Nombre: <span class="ghl-var">{{contact.name}}</span>
-Día/Hora: <span class="ghl-var">{{appointment.start_time}}</span>
-Link CRM: <span class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>                        </div>
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>📅 *NUEVA CITA AGENDADA*
+                            Christian, tienes un diagnóstico con:
+                            Nombre: <span class="ghl-var">{{contact.name}}</span>
+                            Día/Hora: <span class="ghl-var">{{appointment.start_time}}</span>
+                            Link CRM: <span
+                                class="ghl-var">https://app.gohighlevel.com/v2/location/{{location.id}}/contacts/detail/{{contact.id}}</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
-             <!-- STAGE 6: Formulario + ID -->
+            <!-- STAGE 6: Formulario + ID -->
             <section id="stage-6" class="stage-section">
                 <div class="stage-header">
                     <h2><i data-lucide="file-form"></i> 6. Formulario 7 Preguntas + Envío ID</h2>
                     <div class="stage-triggers">
-                        <strong>Triggers:</strong> Pipeline Stage Change to Formulario + ID / Call End con Tag [Enviar Form].
+                        <strong>Triggers:</strong> Pipeline Stage Change to Formulario + ID / Call End con Tag [Enviar
+                        Form].
                     </div>
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-6', 'external')"><i data-lucide="message-square"></i> EXTERNO</button>
-                    <button class="tab-btn" onclick="switchSubTab('stage-6', 'internal')"><i data-lucide="users"></i> INTERNO</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-6', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO</button>
+                    <button class="tab-btn" onclick="switchSubTab('stage-6', 'internal')"><i data-lucide="users"></i>
+                        INTERNO</button>
                 </div>
 
-                 <div class="tab-content external active">
+                <div class="tab-content external active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle" width="14"></i> WhatsApp</span>
-                             <span class="urgency-badge urgency-high">HIGH (+0m)</span>
+                            <span class="platform-badge platform-whatsapp"><i data-lucide="message-circle"
+                                    width="14"></i> WhatsApp</span>
+                            <span class="urgency-badge urgency-high">HIGH (+0m)</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>¡Excelente charla! 🚀 Según lo conversado, el siguiente paso para blindar tu aprobación es completar el siguiente formato breve (toma 2 minutos) y anexar una foto de tu ID/Licencia.
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>¡Excelente charla! 🚀 Según lo conversado, el siguiente paso para blindar
+                            tu aprobación es completar el siguiente formato breve (toma 2 minutos) y anexar una foto de
+                            tu ID/Licencia.
 
-👉 Entra aquí para enviarlo: <span class="ghl-var">{{custom_values.formulario_7_link}}</span>
+                            👉 Entra aquí para enviarlo: <span
+                                class="ghl-var">{{custom_values.formulario_7_link}}</span>
 
-Una vez lo envíes, avanzamos a la etapa de estructuración total. ¡Cualquier duda, estoy aquí!
-- Equipo Christian Funes                        </div>
+                            Una vez lo envíes, avanzamos a la etapa de estructuración total. ¡Cualquier duda, estoy
+                            aquí!
+                            - Equipo Christian Funes
+                        </div>
                     </div>
-                 </div>
+                </div>
 
-                 <div class="tab-content internal">
+                <div class="tab-content internal">
                     <div class="logic-card">
                         <h4><i data-lucide="activity"></i> Reglas del Sistema (Híbrido)</h4>
                         <ul>
-                            <li>El sistema evalúa si en 24H el contacto llenó el formulario (Custom Field: ID_Uploaded).</li>
-                            <li>Si NO lo hizo: Se genera Notificación a Laura -> <em>"Llamar al cliente para llenar el formulario en vivo 📱"</em>.</li>
+                            <li>El sistema evalúa si en 24H el contacto llenó el formulario (Custom Field: ID_Uploaded).
+                            </li>
+                            <li>Si NO lo hizo: Se genera Notificación a Laura -> <em>"Llamar al cliente para llenar el
+                                    formulario en vivo 📱"</em>.</li>
                             <li>Al completar el formulario, pasa automáticamente a la Etapa 7.</li>
                         </ul>
                     </div>
-                 </div>
+                </div>
             </section>
 
             <!-- STAGE 7: Documentos -->
@@ -668,69 +764,106 @@ Una vez lo envíes, avanzamos a la etapa de estructuración total. ¡Cualquier d
                 </div>
 
                 <div class="tabs-header">
-                    <button class="tab-btn active" onclick="switchSubTab('stage-7', 'external')"><i data-lucide="message-square"></i> EXTERNO</button>
+                    <button class="tab-btn active" onclick="switchSubTab('stage-7', 'external')"><i
+                            data-lucide="message-square"></i> EXTERNO</button>
                 </div>
 
                 <div class="tab-content external active">
                     <div class="message-card">
                         <div class="message-header">
-                            <span class="platform-badge platform-email"><i data-lucide="mail" width="14"></i> Email / WhatsApp</span>
+                            <span class="platform-badge platform-email"><i data-lucide="mail" width="14"></i> Email /
+                                WhatsApp</span>
                         </div>
                         <div class="message-body">
-                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i> Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>,
+                            <button class="copy-btn" onclick="copyText(this)"><i data-lucide="copy" width="14"></i>
+                                Copy</button>Hola <span class="ghl-var">{{contact.first_name}}</span>,
 
-Estamos listos para pasar tu archivo a revisión (Underwriting) y obtener esa Carta de Aprobación Real. Para ello, necesitamos verificar los respaldos financieros.
+                            Estamos listos para pasar tu archivo a revisión (Underwriting) y obtener esa Carta de
+                            Aprobación Real. Para ello, necesitamos verificar los respaldos financieros.
 
-Por favor accede a tu portal seguro y carga:
-1. Taxes completos de los últimos 2 años
-2. Estados de cuenta (Bank Statements) recientes
+                            Por favor accede a tu portal seguro y carga:
+                            1. Taxes completos de los últimos 2 años
+                            2. Estados de cuenta (Bank Statements) recientes
 
-👉 Sube los documentos aquí: <span class="ghl-var">{{custom_values.portal_documentos_link}}</span>
+                            👉 Sube los documentos aquí: <span
+                                class="ghl-var">{{custom_values.portal_documentos_link}}</span>
 
-🚨 *Nota:* Mientras más rápido subas esto, más rápido podremos garantizarte tu presupuesto exacto.                        </div>
+                            🚨 *Nota:* Mientras más rápido subas esto, más rápido podremos garantizarte tu presupuesto
+                            exacto.
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- STAGE 8 -->
             <section id="stage-8" class="stage-section">
-                <div class="stage-header"><h2>8. Aplicación Bancos (Underwriting)</h2></div>
-                <div class="logic-card"><h4>Internal Process</h4><p>Silencio Externo. Trabajo interno revisando documentación. Alerta a Christian si falta algo.</p></div>
+                <div class="stage-header">
+                    <h2>8. Aplicación Bancos (Underwriting)</h2>
+                </div>
+                <div class="logic-card">
+                    <h4>Internal Process</h4>
+                    <p>Silencio Externo. Trabajo interno revisando documentación. Alerta a Christian si falta algo.</p>
+                </div>
             </section>
 
             <!-- STAGE 9 -->
             <section id="stage-9" class="stage-section">
-                <div class="stage-header"><h2>9. Búsqueda de Casa + Oferta</h2></div>
+                <div class="stage-header">
+                    <h2>9. Búsqueda de Casa + Oferta</h2>
+                </div>
                 <div class="tab-content active external">
-                     <div class="message-card">
+                    <div class="message-card">
                         <div class="message-header"><span class="platform-badge platform-whatsapp">WA</span></div>
-                        <div class="message-body">¡Felicidades <span class="ghl-var">{{contact.first_name}}</span>! 🎉 Tu Carta de Aprobación Blindada está lista. A partir de hoy, tienes el poder de comprar como un comprador Cash (Cash Buyer). Ya he notificado a nuestro realtor de confianza para que comiencen los tours de casas. ¡Disfruta el proceso!</div>
+                        <div class="message-body">¡Felicidades <span class="ghl-var">{{contact.first_name}}</span>! 🎉
+                            Tu Carta de Aprobación Blindada está lista. A partir de hoy, tienes el poder de comprar como
+                            un comprador Cash (Cash Buyer). Ya he notificado a nuestro realtor de confianza para que
+                            comiencen los tours de casas. ¡Disfruta el proceso!</div>
                     </div>
                 </div>
             </section>
-            
+
             <!-- STAGE 10 -->
             <section id="stage-10" class="stage-section">
-                <div class="stage-header"><h2>10. Con Contrato (Cierre)</h2></div>
-                <div class="logic-card"><h4>Proceso GHL</h4><p>Notificación de celebración. Email automático de pasos a seguir para el Appraisal e Inspecciones con el Realtor.</p></div>
+                <div class="stage-header">
+                    <h2>10. Con Contrato (Cierre)</h2>
+                </div>
+                <div class="logic-card">
+                    <h4>Proceso GHL</h4>
+                    <p>Notificación de celebración. Email automático de pasos a seguir para el Appraisal e Inspecciones
+                        con el Realtor.</p>
+                </div>
             </section>
 
             <!-- STAGES 11, 12, 13 -->
             <section id="stage-11" class="stage-section">
-                <div class="stage-header"><h2>11. No Califica (Dead Loss)</h2></div>
-                 <div class="logic-card"><p>Tag de [DQ]. Archivo cerrado. Sin comunicaciones automáticas para evitar dañar reputación. Salida limpia manual por asesor.</p></div>
-            </section>
-
-            <section id="stage-12" class="stage-section">
-                <div class="stage-header"><h2>12. Coaching Aprobación</h2></div>
-                <div class="message-card">
-                     <div class="message-body"><strong>[Nurture Email cada Mes]:</strong> "Estrategias para mejorar crédito y proteger tu negocio." "Casos de éxito de latinos Self-Employed que lograron salir del rechazo".</div>
+                <div class="stage-header">
+                    <h2>11. No Califica (Dead Loss)</h2>
+                </div>
+                <div class="logic-card">
+                    <p>Tag de [DQ]. Archivo cerrado. Sin comunicaciones automáticas para evitar dañar reputación. Salida
+                        limpia manual por asesor.</p>
                 </div>
             </section>
 
-             <section id="stage-13" class="stage-section">
-                <div class="stage-header"><h2>13. Inacción</h2></div>
-                <div class="logic-card"><p>Lead descartado automáticamente si se estanca en la aplicación por más de 15 días tras todos los recordatorios.</p></div>
+            <section id="stage-12" class="stage-section">
+                <div class="stage-header">
+                    <h2>12. Coaching Aprobación</h2>
+                </div>
+                <div class="message-card">
+                    <div class="message-body"><strong>[Nurture Email cada Mes]:</strong> "Estrategias para mejorar
+                        crédito y proteger tu negocio." "Casos de éxito de latinos Self-Employed que lograron salir del
+                        rechazo".</div>
+                </div>
+            </section>
+
+            <section id="stage-13" class="stage-section">
+                <div class="stage-header">
+                    <h2>13. Inacción</h2>
+                </div>
+                <div class="logic-card">
+                    <p>Lead descartado automáticamente si se estanca en la aplicación por más de 15 días tras todos los
+                        recordatorios.</p>
+                </div>
             </section>
 
         </main>
@@ -743,7 +876,7 @@ Por favor accede a tu portal seguro y carga:
         function switchStage(targetId) {
             document.querySelectorAll('.stage-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-            
+
             document.getElementById(targetId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
@@ -752,7 +885,7 @@ Por favor accede a tu portal seguro y carga:
             const section = document.getElementById(stageId);
             section.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             section.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
+
             section.querySelector('.tab-content.' + tabType).classList.add('active');
             event.currentTarget.classList.add('active');
         }
@@ -771,4 +904,5 @@ Por favor accede a tu portal seguro y carga:
         }
     </script>
 </body>
+
 </html>

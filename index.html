@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Funes — Deliverables | Sales Velocity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0E1A;
+            color: #E2E8F0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: #F59E0B;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+        h1 span { color: #F59E0B; }
+        .sub { font-size: 14px; color: #94A3B8; }
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #F59E0B;
+            margin-bottom: 12px;
+        }
+        .cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+        .card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #E2E8F0;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            background: rgba(245,158,11,0.08);
+            border-color: rgba(245,158,11,0.3);
+            transform: translateY(-2px);
+        }
+        .card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .card-icon.funnel { background: rgba(245,158,11,0.12); }
+        .card-icon.docs { background: rgba(37,99,235,0.12); }
+        .card-icon.brand { background: rgba(16,185,129,0.12); }
+        .card-title { font-weight: 600; font-size: 15px; color: #FFFFFF; }
+        .card-desc { font-size: 13px; color: #94A3B8; margin-top: 2px; }
+        .footer { text-align: center; font-size: 12px; color: #475569; margin-top: 40px; }
+        .footer a { color: #F59E0B; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">Sales Velocity System</div>
+            <h1>Christian <span>Funes</span></h1>
+            <p class="sub">Deliverables & Funnel Preview</p>
+        </div>
+
+        <p class="section-label">📄 Funnel Pages</p>
+        <div class="cards">
+            <a href="pre-registro.html" class="card">
+                <div class="card-icon funnel">1️⃣</div>
+                <div>
+                    <div class="card-title">Pre-Registro</div>
+                    <div class="card-desc">Landing page + popup form de captura</div>
+                </div>
+            </a>
+            <a href="vsl.html" class="card">
+                <div class="card-icon funnel">2️⃣</div>
+                <div>
+                    <div class="card-title">VSL Page</div>
+                    <div class="card-desc">Video + testimonios + método + FAQ + CTA</div>
+                </div>
+            </a>
+            <a href="thank-you.html" class="card">
+                <div class="card-icon funnel">3️⃣</div>
+                <div>
+                    <div class="card-title">Thank You Page</div>
+                    <div class="card-desc">Confirmación + checklist + próximos pasos</div>
+                </div>
+            </a>
+        </div>
+
+        <p class="section-label">📋 Documentos</p>
+        <div class="cards">
+            <a href="comunicaciones-pipeline.html" class="card">
+                <div class="card-icon docs">💬</div>
+                <div>
+                    <div class="card-title">Comunicaciones Pipeline</div>
+                    <div class="card-desc">Copy para cada etapa del pipeline GHL</div>
+                </div>
+            </a>
+            <a href="brand-manual.html" class="card">
+                <div class="card-icon brand">🎨</div>
+                <div>
+                    <div class="card-title">Brand Manual</div>
+                    <div class="card-desc">Identidad visual, colores, tipografía</div>
+                </div>
+            </a>
+        </div>
+
+        <p class="section-label">⚖️ Legal</p>
+        <div class="cards">
+            <a href="privacidad.html" class="card">
+                <div class="card-icon docs">🔒</div>
+                <div>
+                    <div class="card-title">Política de Privacidad</div>
+                    <div class="card-desc">TCPA + privacidad de datos</div>
+                </div>
+            </a>
+            <a href="terminos.html" class="card">
+                <div class="card-icon docs">📜</div>
+                <div>
+                    <div class="card-title">Términos y Condiciones</div>
+                    <div class="card-desc">Términos de servicio</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>Built by <a href="#">Sales Velocity</a> · Marzo 2026</p>
+        </div>
+    </div>
+</body>
+</html>

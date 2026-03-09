@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Último Paso! Confirma Tu Diagnóstico — Christian Funes</title>
+    <meta name="description" content="Tu diagnóstico de poder de compra está confirmado. Revisa los próximos pasos antes de tu llamada con Christian Funes.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           [Custom CSS] — Pegar en Page Settings > Custom CSS en GHL
+           ======================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cf-navy: #0F1B3D;
+            --cf-navy-light: #1E3A8A;
+            --cf-white: #FFFFFF;
+            --cf-gold: #F59E0B;
+            --cf-gold-dark: #D97706;
+            --cf-gold-glow: rgba(245, 158, 11, 0.15);
+            --cf-blue: #2563EB;
+            --cf-gray-50: #F8FAFC;
+            --cf-gray-100: #F1F5F9;
+            --cf-gray-200: #E2E8F0;
+            --cf-gray-300: #CBD5E1;
+            --cf-gray-400: #94A3B8;
+            --cf-gray-500: #64748B;
+            --cf-gray-600: #475569;
+            --cf-gray-700: #334155;
+            --cf-gray-800: #1E293B;
+            --cf-success: #10B981;
+            --cf-font-heading: 'Montserrat', system-ui, sans-serif;
+            --cf-font-body: 'Inter', system-ui, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--cf-font-body);
+            background: var(--cf-white);
+            color: var(--cf-gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========= HERO CONFIRMATION ========= */
+        .hero {
+            background: linear-gradient(165deg, var(--cf-navy) 0%, #0A1128 60%, #0D1833 100%);
+            padding: 64px 20px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cf-success) 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .check-circle svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--cf-white);
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .hero h1 {
+            font-family: var(--cf-font-heading);
+            font-size: clamp(26px, 6vw, 42px);
+            font-weight: 800;
+            color: var(--cf-white);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 .gold { color: var(--cf-gold); }
+
+        .hero .subtitle {
+            font-size: 17px;
+            color: var(--cf-gray-300);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* ========= CONFETTI ANIMATION ========= */
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            opacity: 0;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(400px) rotate(720deg); opacity: 0; }
+        }
+
+        /* ========= NEXT STEPS ========= */
+        .next-steps {
+            background: var(--cf-gray-50);
+            padding: 64px 20px;
+        }
+
+        .next-steps-inner {
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cf-gold);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--cf-font-heading);
+            font-size: clamp(22px, 5vw, 32px);
+            font-weight: 700;
+            color: var(--cf-gray-800);
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.25;
+        }
+
+        .expect-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .expect-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 24px;
+            background: var(--cf-white);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--cf-gray-200);
+        }
+
+        .expect-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .expect-icon.diagnose { background: rgba(245, 158, 11, 0.1); }
+        .expect-icon.approve { background: rgba(37, 99, 235, 0.08); }
+        .expect-icon.plan { background: rgba(16, 185, 129, 0.08); }
+
+        .expect-content h3 {
+            font-family: var(--cf-font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cf-navy);
+            margin-bottom: 4px;
+        }
+
+        .expect-content p {
+            font-size: 14px;
+            color: var(--cf-gray-600);
+            line-height: 1.6;
+        }
+
+        /* ========= CHECKLIST ========= */
+        .checklist {
+            background: var(--cf-white);
+            padding: 64px 20px;
+        }
+
+        .checklist-inner {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .checklist-card {
+            background: var(--cf-gray-50);
+            border: 1px solid var(--cf-gray-200);
+            border-radius: 20px;
+            padding: 32px 28px;
+        }
+
+        .checklist-card h3 {
+            font-family: var(--cf-font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cf-navy);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--cf-gray-200);
+        }
+
+        .check-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-box {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--cf-gold-glow);
+            border: 2px solid var(--cf-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .check-box.checked {
+            background: linear-gradient(135deg, var(--cf-gold) 0%, var(--cf-gold-dark) 100%);
+        }
+
+        .check-box svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--cf-navy);
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .check-box.checked svg {
+            opacity: 1;
+        }
+
+        .check-text {
+            font-size: 15px;
+            color: var(--cf-gray-700);
+            font-weight: 500;
+        }
+
+        .check-text .highlight {
+            color: var(--cf-navy);
+            font-weight: 600;
+        }
+
+        /* ========= TESTIMONIAL ========= */
+        .testimonial-section {
+            background: var(--cf-gray-50);
+            padding: 48px 20px 64px;
+        }
+
+        .testimonial-section-inner {
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--cf-white);
+            border-radius: 16px;
+            padding: 28px 24px;
+            border-left: 4px solid var(--cf-gold);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cf-navy) 0%, var(--cf-navy-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cf-white);
+            font-family: var(--cf-font-heading);
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-info h4 {
+            font-family: var(--cf-font-heading);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cf-gray-800);
+        }
+
+        .testimonial-info span {
+            font-size: 12px;
+            color: var(--cf-gray-500);
+        }
+
+        .testimonial-quote {
+            font-size: 15px;
+            color: var(--cf-gray-700);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.08);
+            border-radius: 100px;
+            color: var(--cf-success);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ========= CONTACT ========= */
+        .contact {
+            background: linear-gradient(165deg, var(--cf-navy) 0%, #0A1128 100%);
+            padding: 48px 20px;
+            text-align: center;
+        }
+
+        .contact-inner {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .contact h3 {
+            font-family: var(--cf-font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--cf-white);
+            margin-bottom: 12px;
+        }
+
+        .contact p {
+            font-size: 15px;
+            color: var(--cf-gray-300);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: #25D366;
+            color: var(--cf-white);
+            font-family: var(--cf-font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* ========= FOOTER ========= */
+        .footer {
+            background: #060B1A;
+            padding: 32px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: var(--cf-gray-500);
+        }
+
+        .footer a {
+            color: var(--cf-gray-400);
+            text-decoration: none;
+        }
+
+        .footer a:hover { color: var(--cf-gold); }
+
+        .footer .footer-links {
+            margin-top: 8px;
+        }
+
+        .footer .footer-links span {
+            margin: 0 8px;
+            color: var(--cf-gray-600);
+        }
+
+        /* ========= MOBILE ========= */
+        @media (max-width: 480px) {
+            .hero { padding: 48px 16px 44px; }
+            .next-steps { padding: 48px 16px; }
+            .checklist { padding: 48px 16px; }
+            .testimonial-section { padding: 36px 16px 48px; }
+            .contact { padding: 40px 16px; }
+            .expect-item { flex-direction: column; gap: 10px; padding: 20px; }
+            .checklist-card { padding: 24px 20px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========================================
+         [Custom HTML Element] — Contenido de la página
+         ======================================== -->
+
+    <!-- HERO CONFIRMATION -->
+    <section class="hero">
+        <div class="confetti-container" id="confetti"></div>
+        <div class="hero-inner">
+            <div class="check-circle">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h1>¡Casi Listo! <span class="gold">Un Paso Más</span></h1>
+            <p class="subtitle">Tu llamada <strong style="color:#F59E0B;">aún no está confirmada</strong>. En los próximos minutos recibirás un mensaje por WhatsApp — es vital que respondas para asegurar tu lugar.</p>
+        </div>
+    </section>
+
+    <!-- WHAT TO EXPECT -->
+    <section class="next-steps">
+        <div class="next-steps-inner">
+            <p class="section-label">Tu Llamada de 15 Minutos</p>
+            <h2 class="section-title">Qué Esperar en Tu Diagnóstico</h2>
+
+            <div class="expect-list">
+                <div class="expect-item">
+                    <div class="expect-icon diagnose">🔍</div>
+                    <div class="expect-content">
+                        <h3>Análisis de Tu Situación Real</h3>
+                        <p>Revisaremos tu flujo de dinero real — no solo tus taxes. Identificaremos los programas que mejor se adaptan a tu situación (incluyendo opciones para Self-Employed e ITIN).</p>
+                    </div>
+                </div>
+
+                <div class="expect-item">
+                    <div class="expect-icon approve">🛡️</div>
+                    <div class="expect-content">
+                        <h3>Tu Poder de Compra Exacto</h3>
+                        <p>Sabrás exactamente cuánto te van a aprobar. No estimados, no "puede que" — un número real con el que puedes buscar casas con certeza.</p>
+                    </div>
+                </div>
+
+                <div class="expect-item">
+                    <div class="expect-icon plan">🗺️</div>
+                    <div class="expect-content">
+                        <h3>Tu Plan de Acción Personalizado</h3>
+                        <p>Te damos los pasos exactos para ir de donde estás hoy a la llave de tu casa. Sin sorpresas, sin letra chica, sin BS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREPARATION CHECKLIST -->
+    <section class="checklist">
+        <div class="checklist-inner">
+            <div class="checklist-card">
+                <h3>📋 Prepárate para Tu Llamada</h3>
+
+                <div class="check-item">
+                    <div class="check-box" onclick="toggleCheck(this)">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span class="check-text">Revisa tu <span class="highlight">WhatsApp</span> — te enviaremos un recordatorio</span>
+                </div>
+
+                <div class="check-item">
+                    <div class="check-box" onclick="toggleCheck(this)">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span class="check-text">Ten una idea de tu <span class="highlight">ingreso mensual</span> (no necesitas documentos)</span>
+                </div>
+
+                <div class="check-item">
+                    <div class="check-box" onclick="toggleCheck(this)">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span class="check-text">Piensa en el <span class="highlight">rango de precio</span> de casa que te interesa</span>
+                </div>
+
+                <div class="check-item">
+                    <div class="check-box" onclick="toggleCheck(this)">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span class="check-text">Prepara cualquier <span class="highlight">pregunta</span> que tengas sobre el proceso</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REINFORCEMENT TESTIMONIAL -->
+    <section class="testimonial-section">
+        <div class="testimonial-section-inner">
+            <p class="section-label">Caso Real</p>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">FM</div>
+                    <div class="testimonial-info">
+                        <h4>Familia Martínez</h4>
+                        <span>Miami, FL</span>
+                    </div>
+                </div>
+                <p class="testimonial-quote">"Perdí 3 meses viendo casas que no podía pagar. Con Christian, en 24 horas supe exactamente cuánto me aprobaban. Cerré mi casa en 30 días. Lo mejor: llegué al Realtor como comprador serio y me dieron prioridad."</p>
+                <div class="testimonial-result">✓ De 3 meses perdidos → Casa cerrada en 30 días</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / WHATSAPP -->
+    <section class="contact">
+        <div class="contact-inner">
+            <h3>¿Tienes Alguna Duda?</h3>
+            <p>Si tienes alguna pregunta antes de tu llamada, puedes escribirnos directamente por WhatsApp. Te responderemos lo antes posible.</p>
+            <a href="https://wa.me/1XXXXXXXXXX" target="_blank" class="whatsapp-btn">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.228A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.239 0-4.332-.726-6.019-1.96l-.42-.312-2.783.73.744-2.717-.343-.445A9.962 9.962 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                Escríbenos por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Christian Funes · Mortgage Broker · NMLS Licensed</p>
+        <div class="footer-links">
+            <a href="#">Privacidad</a>
+            <span>·</span>
+            <a href="#">Términos</a>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         [Tracking Code - Footer] — Pegar en Settings > Tracking Code > Footer
+         ======================================== -->
+    <script>
+        // Checklist toggle
+        function toggleCheck(box) {
+            box.classList.toggle('checked');
+        }
+
+        // Confetti animation on load
+        function createConfetti() {
+            const container = document.getElementById('confetti');
+            const colors = ['#F59E0B', '#D97706', '#10B981', '#2563EB', '#FFFFFF', '#3B82F6'];
+            
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+                piece.style.width = (4 + Math.random() * 8) + 'px';
+                piece.style.height = (4 + Math.random() * 8) + 'px';
+                container.appendChild(piece);
+            }
+
+            // Clean up after animation
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Run confetti on load
+        window.addEventListener('load', createConfetti);
+    </script>
+</body>
+</html>
